@@ -1,5 +1,6 @@
 using Space.Abstract.Controller;
 using Space.Abstract.Movements;
+using Space.Managers;
 using Space.Movements;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,19 +17,13 @@ namespace Space.Controller
         [SerializeField] float _yRange;
         Vector2 _destionation;
         IMover _mover;
-
         private void Awake()
         {
             _mover = new PlayerMovement(this);
             _destionation = transform.position;
         }
-        
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Instantiate(bullet,bulletTransform.transform.position, Quaternion.identity);
-            }
             if (Input.GetMouseButton(0))
             {
                 _destionation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -37,6 +32,7 @@ namespace Space.Controller
             {
                 _destionation = new Vector2(transform.position.x, transform.position.y);
             }
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -_xRange, _xRange), Mathf.Clamp(transform.position.y, -_yRange, _yRange), 0);
         }
         private void FixedUpdate()
         {
@@ -46,5 +42,4 @@ namespace Space.Controller
             }
         }
     }
-
 }

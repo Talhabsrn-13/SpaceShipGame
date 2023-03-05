@@ -38,9 +38,7 @@ namespace Space.Controller
 
         void KillYourSelf()
         {
-            Destroy(gameObject);
             BulletManager.Instance.SetPool(this);
-            //EnemeyManager Instantiate
         }
         public void SetMoveSpeed(float moveSpeed = 10f)
         {
