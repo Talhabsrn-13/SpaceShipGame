@@ -10,22 +10,21 @@ namespace Space.Managers
     {
         public bool CanShot { get; set; }
         [SerializeField] Transform _playerTransform;
+        [SerializeField] float _fireTime;
+       
         //look
         private void Start()
         {
-            InvokeRepeating("Spawn", 1, 1f);
+            InvokeRepeating("Spawn", 1, _fireTime);
         }
         void Spawn()
         {
             if (CanShot) return;
-            for (int i = 0; i < 2; i++)
-            {
-                BulletController newBullet = BulletManager.Instance.GetPool();
-                newBullet.transform.parent = this.transform;
-                newBullet.transform.position = _playerTransform.position;
-                newBullet.gameObject.SetActive(true);
-            }
-           
+
+            BulletController newBullet = BulletManager.Instance.GetPool();
+            newBullet.transform.parent = this.transform;
+            newBullet.transform.position = _playerTransform.position;
+            newBullet.gameObject.SetActive(true);
         }
     }
 

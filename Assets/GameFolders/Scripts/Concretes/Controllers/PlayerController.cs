@@ -48,9 +48,14 @@ namespace Space.Controller
             {
                 // Patlama efekti, oyundurmasý devam etmek istermisiniz demesi eklenecek.
 
-                _isDead = true;
-                GameManager.Instance.StopGame();
+                TakeDamage();
             }
+        }
+
+        public void TakeDamage()
+        {
+            _isDead = true;
+            GameManager.Instance.StopGame();
         }
     }
 }
