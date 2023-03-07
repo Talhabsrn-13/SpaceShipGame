@@ -1,4 +1,4 @@
-using Space.Abstract.Utilities;
+using Space.Abstract.Entity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

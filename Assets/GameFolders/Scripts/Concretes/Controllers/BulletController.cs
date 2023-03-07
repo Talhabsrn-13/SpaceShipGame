@@ -1,3 +1,4 @@
+using Space.Abstract.Combats;
 using Space.Abstract.Controller;
 using Space.Managers;
 using Space.Movements;
@@ -45,6 +46,16 @@ namespace Space.Controller
             if (moveSpeed < _verticalMoveSpeed) return;
 
             _verticalMoveSpeed = moveSpeed;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent<IHealth>(out IHealth  health))
+            {
+                KillYourSelf();
+                
+                health.TakeDamage(10);
+            }
         }
     }
 }

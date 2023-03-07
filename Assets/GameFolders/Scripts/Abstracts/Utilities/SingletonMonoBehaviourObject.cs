@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Space.Abstract.Utilities
+namespace Space.Abstract.Entity
 {
     public class SingletonMonoBehaviourObject<T> : MonoBehaviour
     {

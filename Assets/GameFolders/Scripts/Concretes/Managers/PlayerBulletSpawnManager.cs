@@ -13,7 +13,7 @@ namespace Space.Managers
         //look
         private void Start()
         {
-            InvokeRepeating("Spawn", 1, 0.1f);
+            InvokeRepeating("Spawn", 1, 1f);
         }
         void Spawn()
         {

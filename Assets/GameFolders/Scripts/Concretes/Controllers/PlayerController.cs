@@ -11,12 +11,11 @@ namespace Space.Controller
 {
     public class PlayerController : MonoBehaviour, IEntityController
     {
-        [SerializeField] Transform bulletTransform;
-        [SerializeField] GameObject bullet;
         [SerializeField] float _xRange;
         [SerializeField] float _yRange;
         Vector2 _destionation;
         IMover _mover;
+        bool _isDead = false;
         private void Awake()
         {
             _mover = new PlayerMovement(this);
@@ -24,6 +23,7 @@ namespace Space.Controller
         }
         private void Update()
         {
+            if (_isDead) return;
             if (Input.GetMouseButton(0))
             {
                 _destionation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -39,6 +39,17 @@ namespace Space.Controller
             if (_destionation != null)
             {
                 _mover.MoveAction(_destionation);
+            }
+        }
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            IEnemy entityController = other.GetComponent<IEnemy>();
+            if (entityController != null && !_isDead)
+            {
+                // Patlama efekti, oyundurmasý devam etmek istermisiniz demesi eklenecek.
+
+                _isDead = true;
+                GameManager.Instance.StopGame();
             }
         }
     }
