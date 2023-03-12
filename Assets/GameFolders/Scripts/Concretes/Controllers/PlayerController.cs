@@ -16,6 +16,7 @@ namespace Space.Controller
         Vector2 _destionation;
         IMover _mover;
         bool _isDead = false;
+        int _bulletLvl;
         private void Awake()
         {
             _mover = new PlayerMovement(this);
