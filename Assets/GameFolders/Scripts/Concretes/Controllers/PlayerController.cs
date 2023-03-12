@@ -2,6 +2,7 @@ using Space.Abstract.Controller;
 using Space.Abstract.Movements;
 using Space.Managers;
 using Space.Movements;
+using Space.Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,8 @@ namespace Space.Controller
         Vector2 _destionation;
         IMover _mover;
         bool _isDead = false;
-        int _bulletLvl;
+        [SerializeField] ShipType _shipType;
+        public ShipType ShipType => _shipType;
         private void Awake()
         {
             _mover = new PlayerMovement(this);

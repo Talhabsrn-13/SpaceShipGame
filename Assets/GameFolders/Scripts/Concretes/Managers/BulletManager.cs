@@ -1,5 +1,6 @@
 using Space.Abstract.Entity;
 using Space.Controller;
+using Space.Enums;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Space.Managers
     {
         [SerializeField] BulletController[] _bulletPrefabs;
 
-        Queue<BulletController> _bullets = new Queue<BulletController>();
+        Dictionary<BulletType, Queue<BulletController>> _bullets = new Dictionary<BulletType, Queue<BulletController>>();
         private void Awake()
         {
             SingletonThisObject(this);
@@ -24,16 +25,17 @@ namespace Space.Managers
 
         private void InitiliazePool()
         {
-
             for (int i = 0; i < _bulletPrefabs.Length; i++)
             {
+                Queue<BulletController> bulletControllers = new Queue<BulletController>();
                 for (int j = 0; j < 20; j++)
                 {
                     BulletController newBullet = Instantiate(_bulletPrefabs[i]);
                     newBullet.gameObject.SetActive(false);
                     newBullet.transform.parent = this.transform;
-                    _bullets.Enqueue(newBullet);
+                    bulletControllers.Enqueue(newBullet);
                 }
+                _bullets.Add((BulletType)i, bulletControllers);
             }
         }
 
@@ -41,15 +43,22 @@ namespace Space.Managers
         {
             bulletController.gameObject.SetActive(false);
             bulletController.transform.parent = this.transform;
-            _bullets.Enqueue(bulletController);
+            Queue<BulletController> bulletControllers = _bullets[bulletController.BulletType];
+            bulletControllers.Enqueue(bulletController);
         }
-        public BulletController GetPool()
+        public BulletController GetPool(BulletType bulletType)
         {
-            if (_bullets.Count == 0)
+            Queue<BulletController> bulletControllers = _bullets[bulletType];
+            if (bulletControllers.Count == 0)
             {
-                InitiliazePool();
+                for (int i = 0; i < 10; i++)
+                {
+                    BulletController newBullet = Instantiate(_bulletPrefabs[(int)bulletType]);
+                    bulletControllers.Enqueue(newBullet);
+                }
             }
-            return _bullets.Dequeue();
+
+            return bulletControllers.Dequeue();
         }
     }
 

@@ -1,5 +1,6 @@
 using Space.Abstract.Combats;
 using Space.Abstract.Controller;
+using Space.Enums;
 using Space.Managers;
 using Space.Movements;
 using System.Collections;
@@ -10,11 +11,12 @@ namespace Space.Controller
 {
     public class BulletController : MonoBehaviour , IEntityController
     {
+        [SerializeField] BulletType _bulletType;
         [SerializeField] float _verticalMoveSpeed;
         [SerializeField] float _maxLifeTime;
         
         VerticalMover _mover;
-     
+        public BulletType BulletType => _bulletType;
         float _currentLifeTime;
         public int Damage { get; set; }
         public object BulletManager { get; private set; }
