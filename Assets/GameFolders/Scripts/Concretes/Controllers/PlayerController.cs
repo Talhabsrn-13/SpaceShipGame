@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Space.Abstract.Entity;
 
 namespace Space.Controller
 {
@@ -14,6 +15,7 @@ namespace Space.Controller
     {
         [SerializeField] float _xRange;
         [SerializeField] float _yRange;
+        [SerializeField] GameObject[] _gunPrefabs;
         Vector2 _destionation;
         IMover _mover;
         bool _isDead = false;
@@ -23,6 +25,10 @@ namespace Space.Controller
         {
             _mover = new PlayerMovement(this);
             _destionation = transform.position;
+        }
+        private void Start()
+        {
+
         }
         private void Update()
         {
@@ -46,6 +52,7 @@ namespace Space.Controller
         }
         private void OnTriggerEnter2D(Collider2D other)
         {
+
             IEnemy entityController = other.GetComponent<IEnemy>();
             if (entityController != null && !_isDead)
             {
@@ -53,8 +60,38 @@ namespace Space.Controller
 
                 TakeDamage();
             }
-        }
+            ICollectable collectableController = other.GetComponent<ICollectable>();
+            if (collectableController != null && !_isDead)
+            {
+                //score alma level atlatma
+                if (collectableController.CollectableType == CollectableType.Power)
+                {
+                    if (GameManager.Instance.BulletLvl > 6)
+                    {
+                        GameManager.Instance.Score += 500;
+                    }
+                    else
+                    {
+                        GunLevelUp(GameManager.Instance.BulletLvl++);
+                    }
+                }
+                Destroy(collectableController.Transform.gameObject);
 
+                GameManager.Instance.Score += 500;
+
+            }
+        }
+        private void GunLevelUp(int level)
+        {
+            //reset fire
+
+            _gunPrefabs[level].SetActive(true);
+
+            for (int i = 0; i < level; i++)
+            {
+                _gunPrefabs[i].GetComponent<PlayerBulletSpawnManager>().ResetInvoke();
+            }
+        }
         public void TakeDamage()
         {
             _isDead = true;

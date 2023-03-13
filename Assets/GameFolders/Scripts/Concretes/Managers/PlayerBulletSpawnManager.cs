@@ -18,8 +18,9 @@ namespace Space.Managers
         private void Start()
         {
             _direction = (transform.localRotation * Vector2.up).normalized;
-            InvokeRepeating("Spawn", 1, _fireTime);
+           
             _player = GetComponentInParent<PlayerController>();
+            InvokeRepeating("Spawn", 1, _fireTime);
         }
         void Spawn()
         {
@@ -32,8 +33,12 @@ namespace Space.Managers
             newBullet.transform.rotation = transform.rotation;
             newBullet.gameObject.SetActive(true);
         }
+        public void ResetInvoke()
+        {
+            CancelInvoke("Spawn");
+            InvokeRepeating("Spawn", 0.1f, _fireTime);
+        }
 
-      
     }
 
 }

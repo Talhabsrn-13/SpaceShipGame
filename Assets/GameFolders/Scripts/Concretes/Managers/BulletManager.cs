@@ -36,7 +36,6 @@ namespace Space.Managers
                     bulletControllers.Enqueue(newBullet);
                 }
                 _bullets.Add((BulletType)i, bulletControllers);
-                Debug.Log("A");
             }
         }
 
