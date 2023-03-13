@@ -28,7 +28,7 @@ namespace Space.Managers
             for (int i = 0; i < _bulletPrefabs.Length; i++)
             {
                 Queue<BulletController> bulletControllers = new Queue<BulletController>();
-                for (int j = 0; j < 20; j++)
+                for (int j = 0; j < 100; j++)
                 {
                     BulletController newBullet = Instantiate(_bulletPrefabs[i]);
                     newBullet.gameObject.SetActive(false);
@@ -36,6 +36,7 @@ namespace Space.Managers
                     bulletControllers.Enqueue(newBullet);
                 }
                 _bullets.Add((BulletType)i, bulletControllers);
+                Debug.Log("A");
             }
         }
 
@@ -51,7 +52,7 @@ namespace Space.Managers
             Queue<BulletController> bulletControllers = _bullets[bulletType];
             if (bulletControllers.Count == 0)
             {
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     BulletController newBullet = Instantiate(_bulletPrefabs[(int)bulletType]);
                     bulletControllers.Enqueue(newBullet);

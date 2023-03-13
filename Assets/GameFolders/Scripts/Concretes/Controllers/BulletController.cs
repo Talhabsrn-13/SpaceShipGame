@@ -12,11 +12,18 @@ namespace Space.Controller
     public class BulletController : MonoBehaviour , IEntityController
     {
         [SerializeField] BulletType _bulletType;
-        [SerializeField] float _verticalMoveSpeed;
         [SerializeField] float _maxLifeTime;
-        
+
+        [SerializeField] Vector2 _direction = new Vector2(0, 1);
+        [SerializeField] float _speed = 2f;
+        [SerializeField] Vector2 _velocity;
+     
         VerticalMover _mover;
         public BulletType BulletType => _bulletType;
+        public Vector2 Direction {
+            get { return _direction; }
+            set { _direction = value; }
+        }
         float _currentLifeTime;
         public int Damage { get; set; }
         public object BulletManager { get; private set; }
@@ -27,6 +34,7 @@ namespace Space.Controller
         }
         private void Update()
         {
+            _velocity = _direction * _speed;
             _currentLifeTime += Time.deltaTime;
             if (_currentLifeTime > _maxLifeTime)
             {
@@ -36,26 +44,24 @@ namespace Space.Controller
         }
         private void FixedUpdate()
         {
-            _mover.FixedTick(true, _verticalMoveSpeed);
+            Vector2 pos = transform.position;
+            pos += _velocity * Time.fixedDeltaTime;
+
+            transform.position = pos;
         }
 
         void KillYourSelf()
         {
             Managers.BulletManager.Instance.SetPool(this);
         }
-        public void SetMoveSpeed(float moveSpeed = 10f)
-        {
-            if (moveSpeed < _verticalMoveSpeed) return;
 
-            _verticalMoveSpeed = moveSpeed;
-        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.TryGetComponent<IHealth>(out IHealth  health))
             {
                 KillYourSelf();
-                
+                //particleEffect
                 health.TakeDamage(10);
             }
         }

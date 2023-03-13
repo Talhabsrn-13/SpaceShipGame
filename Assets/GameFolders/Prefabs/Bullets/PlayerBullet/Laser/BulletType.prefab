@@ -93,8 +93,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9049440cc9decaf489eb840a94a1d106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _verticalMoveSpeed: 10
-  _maxLifeTime: 2
+  _bulletType: 0
+  _maxLifeTime: 1
+  _direction: {x: 0, y: 1}
+  _speed: 8
+  _velocity: {x: 0, y: 0}
 --- !u!1 &2718752110948495210
 GameObject:
   m_ObjectHideFlags: 0
