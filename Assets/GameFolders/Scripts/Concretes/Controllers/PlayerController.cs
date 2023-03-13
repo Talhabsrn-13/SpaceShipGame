@@ -75,7 +75,7 @@ namespace Space.Controller
                         GunLevelUp(GameManager.Instance.BulletLvl++);
                     }
                 }
-                Destroy(collectableController.Transform.gameObject);
+                other.GetComponent<CollectableController>().KillyourSelf();
 
                 GameManager.Instance.Score += 500;
 

@@ -27,5 +27,10 @@ namespace Space.Controller
         {
             _mover.FixedTick(false, _speed);
         }
+
+        public void KillyourSelf()
+        {
+            Managers.CollectableManager.Instance.SetPool(this);
+        }
     }
 }
