@@ -1,4 +1,5 @@
 using Space.Abstract.Controller;
+using Space.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,17 +12,22 @@ namespace Space.Controller
         [SerializeField] GameObject _explosionEffect;
         [Range(10, 15)] [SerializeField] float _min;
         [Range(15, 30)] [SerializeField] float _max;
-
+        [SerializeField] Transform _spawnerTransform;
         float _maxSpawnTime;
         float _currentTime = 0f;
         bool _canIncrease = true;
+        float _chance;
+
+
+
         [SerializeField] EnemyBulletController _bullet;
         public bool CanIncrease => _canIncrease;
         private void Start()
         {
+            _chance = Random.Range(0, 1f);
 
         }
-       
+
 
         private void OnEnable()
         {
@@ -56,11 +62,19 @@ namespace Space.Controller
         {
             Instantiate(_explosionEffect, this.transform.position, Quaternion.identity);
             //pool
+            if (_chance < 0.1f)
+            {
+                CollectableController newItem = CollectableManager.Instance.GetPool((CollectableType)0);
+                newItem.transform.parent = _spawnerTransform.transform;
+                newItem.transform.position = new Vector3(transform.position.x, transform.position.y, 2);
+                newItem.gameObject.SetActive(true);
+                Debug.Log("bom");
+            }
             Destroy(gameObject);
         }
         private void OnDisable()
         {
-            //score++
+            GameManager.Instance.Score += 100;
         }
     }
 }

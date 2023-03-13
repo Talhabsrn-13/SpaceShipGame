@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum CollectableType 
 {
-    Power,
-    Score
+    GunPower,
+    Score,
+    SuperPower
 }

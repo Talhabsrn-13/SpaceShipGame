@@ -12,7 +12,6 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         get { return _bulletLvl; }
         set { _bulletLvl = value; }
     }
-
     private void Awake()
     {
         SingletonThisObject(this);

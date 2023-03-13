@@ -64,9 +64,9 @@ namespace Space.Controller
             if (collectableController != null && !_isDead)
             {
                 //score alma level atlatma
-                if (collectableController.CollectableType == CollectableType.Power)
+                if (collectableController.CollectableType == CollectableType.GunPower)
                 {
-                    if (GameManager.Instance.BulletLvl > 6)
+                    if (GameManager.Instance.BulletLvl > _gunPrefabs.Length)
                     {
                         GameManager.Instance.Score += 500;
                     }
@@ -82,9 +82,7 @@ namespace Space.Controller
             }
         }
         private void GunLevelUp(int level)
-        {
-            //reset fire
-
+        {   
             _gunPrefabs[level].SetActive(true);
 
             for (int i = 0; i < level; i++)
