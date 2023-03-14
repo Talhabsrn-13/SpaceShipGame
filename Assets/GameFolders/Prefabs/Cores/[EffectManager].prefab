@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2552856325975263249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2552856325975263248}
+  m_Layer: 0
+  m_Name: EffectTransform
+  m_TagString: EffectParent
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2552856325975263248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552856325975263249}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2552856326651669252}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2552856326651669254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2552856326651669252}
+  - component: {fileID: 2552856326651669253}
+  m_Layer: 0
+  m_Name: '[EffectManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2552856326651669252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552856326651669254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2552856325975263248}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2552856326651669253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552856326651669254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15bc6ed3cccaec14390204dd680581d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefabs:
+  - {fileID: -8312142479759048533, guid: 12d0bb477d0cefb43abe799b70bd395c, type: 3}
+  - {fileID: -4669692377845128710, guid: 5868e262502fbe04eb880406ae43ff53, type: 3}
+  - {fileID: -4478909265634737016, guid: eb61e73b46f151a4a9625cbcc879bdc2, type: 3}
+  - {fileID: 2430740453039984305, guid: 3b673bd5f68923d42b00b1097136bd43, type: 3}
+  - {fileID: 3529241993222537938, guid: 6656fd8efdece484fa6594de3ba4fc56, type: 3}
+  - {fileID: -1142922361873305226, guid: 07be517a89e6073489d581391685f7ab, type: 3}
+  - {fileID: 5857953441312477834, guid: 6f8a08aae9b6a7047ba8b402a672d65d, type: 3}
+  _parentTransform: {fileID: 2552856325975263248}

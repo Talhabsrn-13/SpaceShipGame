@@ -9,17 +9,19 @@ namespace Space.Controller
     public class EffectController : MonoBehaviour
     {
         [SerializeField] BulletType _bulletType;
-        [SerializeField] GameObject _parentTransform;
         public BulletType BulletType => _bulletType;
+
         private void Start()
         {
-            transform.parent = _parentTransform.transform;
+            transform.parent = GameObject.FindGameObjectWithTag("EffectParent").transform;
         }
-       
-        //Onenable.
-        IEnumerator WaitforLose()
+        private void OnEnable()
         {
-            yield return new WaitForSeconds(1f);
+            Invoke("KillYourSelf", 0.2f);
+            transform.parent = EffectManager.Instance.ParentTransform.transform;
+        }
+        public void KillYourSelf()
+        {
             EffectManager.Instance.SetPool(this);
         }
     }

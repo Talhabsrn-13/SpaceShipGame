@@ -59,13 +59,10 @@ namespace Space.Controller
             {
                 
                 EffectController newEffect = EffectManager.Instance.GetPool((BulletType)_bulletType);
- 
                 newEffect.transform.position = transform.position;   
                 newEffect.gameObject.SetActive(true);
               
                 KillYourSelf();
-
-
                 health.TakeDamage(10);
             }
         }

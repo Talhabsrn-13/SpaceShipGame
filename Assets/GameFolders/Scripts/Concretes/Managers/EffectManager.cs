@@ -8,7 +8,9 @@ using UnityEngine;
 public class EffectManager : SingletonMonoBehaviourObject<EffectManager>
 {
     [SerializeField] EffectController[] _effectPrefabs;
+    [SerializeField] Transform _parentTransform;
 
+    public Transform ParentTransform => _parentTransform;
     Dictionary<BulletType, Queue<EffectController>> _effects = new Dictionary<BulletType, Queue<EffectController>>();
     private void Awake()
     {
@@ -22,7 +24,7 @@ public class EffectManager : SingletonMonoBehaviourObject<EffectManager>
 
     private void InitiliazePool()
     {
-        for (int i = 0; i < _effectPrefabs.Length; i++) 
+        for (int i = 0; i < _effectPrefabs.Length; i++)
         {
             Queue<EffectController> effectControllers = new Queue<EffectController>();
             for (int j = 0; j < 100; j++)
@@ -35,7 +37,7 @@ public class EffectManager : SingletonMonoBehaviourObject<EffectManager>
             _effects.Add((BulletType)i, effectControllers);
         }
     }
-    
+
     internal void SetPool(EffectController effectController)
     {
         effectController.gameObject.SetActive(false);
@@ -46,7 +48,7 @@ public class EffectManager : SingletonMonoBehaviourObject<EffectManager>
     public EffectController GetPool(BulletType bulletType)
     {
         Queue<EffectController> effectControllers = _effects[bulletType];
-        if (effectControllers.Count < 100)
+        if (effectControllers.Count < 10)
         {
             for (int i = 0; i < 10; i++)
             {
