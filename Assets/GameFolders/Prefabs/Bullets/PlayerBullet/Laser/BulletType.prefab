@@ -98,6 +98,7 @@ MonoBehaviour:
   _direction: {x: 0, y: 1}
   _speed: 8
   _velocity: {x: 0, y: 0}
+  _explotionEffect: {fileID: 2702481301588727540, guid: eb61e73b46f151a4a9625cbcc879bdc2, type: 3}
 --- !u!1 &2718752110948495210
 GameObject:
   m_ObjectHideFlags: 0

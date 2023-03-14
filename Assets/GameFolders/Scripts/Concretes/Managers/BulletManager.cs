@@ -28,7 +28,7 @@ namespace Space.Managers
             for (int i = 0; i < _bulletPrefabs.Length; i++)
             {
                 Queue<BulletController> bulletControllers = new Queue<BulletController>();
-                for (int j = 0; j < 3000; j++)
+                for (int j = 0; j < 2000; j++)
                 {
                     BulletController newBullet = Instantiate(_bulletPrefabs[i]);
                     newBullet.gameObject.SetActive(false);
@@ -49,9 +49,9 @@ namespace Space.Managers
         public BulletController GetPool(BulletType bulletType)
         {
             Queue<BulletController> bulletControllers = _bullets[bulletType];
-            if (bulletControllers.Count < 10)
+            if (bulletControllers.Count < 100)
             {
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     BulletController newBullet = Instantiate(_bulletPrefabs[(int)bulletType]);
                     bulletControllers.Enqueue(newBullet);

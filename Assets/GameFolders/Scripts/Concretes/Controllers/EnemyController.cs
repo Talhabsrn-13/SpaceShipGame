@@ -51,7 +51,7 @@ namespace Space.Controller
 
             _currentTime = 0;
             GetRandomSpawnTime();
-
+    
         }
 
         private void GetRandomSpawnTime()
@@ -68,7 +68,6 @@ namespace Space.Controller
                 newItem.transform.parent = _spawnerTransform.transform;
                 newItem.transform.position = new Vector3(transform.position.x, transform.position.y, 2);
                 newItem.gameObject.SetActive(true);
-                Debug.Log("bom");
             }
             Destroy(gameObject);
         }

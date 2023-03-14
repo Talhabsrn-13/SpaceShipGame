@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9093771366072747282, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
+      propertyPath: _explotionEffect
+      value: 
+      objectReference: {fileID: 2369001440777515194, guid: 12d0bb477d0cefb43abe799b70bd395c, type: 3}
     - target: {fileID: 2718752109400309844, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_Name
       value: BulletType-1

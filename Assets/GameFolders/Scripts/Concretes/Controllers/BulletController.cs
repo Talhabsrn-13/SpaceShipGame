@@ -17,8 +17,8 @@ namespace Space.Controller
         [SerializeField] Vector2 _direction = new Vector2(0, 1);
         [SerializeField] float _speed = 2f;
         [SerializeField] Vector2 _velocity;
-     
-        VerticalMover _mover;
+        [SerializeField] Transform _effectTransform;
+   
         public BulletType BulletType => _bulletType;
         public Vector2 Direction {
             get { return _direction; }
@@ -28,10 +28,7 @@ namespace Space.Controller
         public int Damage { get; set; }
         public object BulletManager { get; private set; }
 
-        private void Awake()
-        {
-            _mover = new VerticalMover(this);
-        }
+    
         private void Update()
         {
             _velocity = _direction * _speed;
@@ -51,7 +48,7 @@ namespace Space.Controller
         }
 
         void KillYourSelf()
-        {
+        {        
             Managers.BulletManager.Instance.SetPool(this);
         }
 
@@ -60,8 +57,15 @@ namespace Space.Controller
         {
             if (collision.TryGetComponent<IHealth>(out IHealth  health))
             {
+                
+                EffectController newEffect = EffectManager.Instance.GetPool((BulletType)_bulletType);
+ 
+                newEffect.transform.position = transform.position;   
+                newEffect.gameObject.SetActive(true);
+              
                 KillYourSelf();
-                //particleEffect
+
+
                 health.TakeDamage(10);
             }
         }
