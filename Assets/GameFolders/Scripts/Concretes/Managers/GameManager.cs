@@ -35,7 +35,26 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         get => _gameState;
         set => _gameState = value;
     }
+    #region LastShip
+    public int LastShipIndex
+    {
+        get => PlayerPrefs.GetInt("LastShipIndex", 0);
+        set => PlayerPrefs.SetInt("LastShipIndex", value);
+    }
+    public int LastHaveShipIndex
+    {
+        get => PlayerPrefs.GetInt("LastShipIndex", 0);
+        set => PlayerPrefs.SetInt("LastShipIndex", value);
+    }
+    #endregion
 
+    #region MoneyData
+    public int MoneyData
+    {
+        get => PlayerPrefs.GetInt("MoneyData", 10000);
+        set => PlayerPrefs.SetInt("MoneyData", value);
+    }
+    #endregion
     #region Level System
     public int EndlessLevel
     {
@@ -98,15 +117,16 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
 
     private void Start()
     {
-     //   StartCoroutine(WakeUp());
+        //   StartCoroutine(WakeUp());
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    public void NextLevel()
+    public void NextLevel(int index)
     {
+        SceneManager.LoadScene(index);
         //InGameGold = StartCountData;
         //_gameState = GameState.Idle;
         //LevelLastGold = 0;
