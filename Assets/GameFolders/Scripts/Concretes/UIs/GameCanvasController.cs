@@ -16,7 +16,6 @@ namespace Space.UIs
         
             for (int i = 0; i < GameManager.Instance.BulletLvl; i++)
             {
-                Debug.Log(_bulletLevelImages[i]);
                 _bulletLevelImages[i].color = Color.white;
             }
         }

@@ -8,7 +8,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
 {
     [SerializeField] int levelCount;
     [SerializeField] int randomLevelLowerLimit;
-    [SerializeField] GameObject _gameCanvas;
+
     EventData _eventData;
     GameState _gameState = GameState.Idle;
 
@@ -23,7 +23,6 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         set
         {
             _gameScore = value;
-            _gameCanvas.GetComponent<GameCanvasController>().SetScore();
         }
     }
     public int BulletLvl
@@ -32,7 +31,6 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         set
         {
             _bulletLvl = value;
-            _gameCanvas.GetComponent<GameCanvasController>().SetBulletLevel();
         }
     }
     private void Awake()

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7307006570925729039
+--- !u!1001 &4958061694999500585
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,39 +9,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9093771366072747282, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: _bulletType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2676544499336978814, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
-      propertyPath: m_Size.x
-      value: 0.026391251
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2676544499336978814, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_Size.y
-      value: 0.05202215
-      objectReference: {fileID: 0}
-    - target: {fileID: 2676544499336978814, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0002215216
+      value: 0.13213603
       objectReference: {fileID: 0}
     - target: {fileID: 2676544499336978814, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_Offset.y
-      value: 0.0017722063
+      value: 0.026068015
       objectReference: {fileID: 0}
     - target: {fileID: 2718752109400309844, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_Name
-      value: BulletType-3
+      value: BulletType-9
       objectReference: {fileID: 0}
     - target: {fileID: 2718752109400309845, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2718752109400309845, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2718752109400309845, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2718752109400309845, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -83,18 +67,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2718752110948495211, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718752110948495211, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718752110948495211, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718752110948495211, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718752110948495211, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 2718752110948495220, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_Size.x
-      value: 0.17
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 2718752110948495220, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_Size.y
-      value: 0.21
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 2718752110948495220, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1560893695569296514, guid: 8fc5be057647cde4d8ba18df76f67b4a, type: 3}
+      objectReference: {fileID: -7692065970402808442, guid: 38d35e8ba36e65a40b428259353240d6, type: 3}
     - target: {fileID: 2718752110948495220, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2369001440777515193}
   - component: {fileID: -8312142479759048533}
   m_Layer: 0
-  m_Name: Explotion-1
+  m_Name: Explotion3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2369001440777515194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.69, y: 2.92, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,5 +115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708aa7ecc3bf8cc4b8fe6f99ae5ab931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletType: 0
-  _parentTransform: {fileID: 0}
+  _bulletType: 2

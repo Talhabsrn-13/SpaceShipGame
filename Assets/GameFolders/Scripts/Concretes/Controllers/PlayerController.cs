@@ -6,7 +6,6 @@ using Space.Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Space.Abstract.Entity;
 
 namespace Space.Controller
@@ -16,6 +15,7 @@ namespace Space.Controller
         [SerializeField] float _xRange;
         [SerializeField] float _yRange;
         [SerializeField] GameObject[] _gunPrefabs;
+        [SerializeField] GameObject[] _ships;
         Vector2 _destionation;
         IMover _mover;
         bool _isDead = false;
@@ -28,7 +28,13 @@ namespace Space.Controller
         }
         private void Start()
         {
+            _shipType = (ShipType)GameManager.Instance.LastHaveShipIndex;
+            _ships[GameManager.Instance.LastHaveShipIndex].SetActive(true);
 
+            for (int i = 0; i < _gunPrefabs.Length; i++)
+            {
+               _gunPrefabs[i] = _ships[GameManager.Instance.LastHaveShipIndex].GetComponent<ShipController>().Guns[i];
+            }
         }
         private void Update()
         {

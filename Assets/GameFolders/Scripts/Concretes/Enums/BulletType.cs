@@ -6,13 +6,17 @@ namespace Space.Enums
 {
     public enum BulletType
     {
-       BlueLaser,
-       FireBall,
-       GrayArrow,
-       PurpleLaser,
-       YellowArrow,
-       GreenMachineGun,
-       FireBallAngular
+       AntiVirus,
+       Carmelo,
+       Alpha,
+       Full,
+       Loki,
+       Proctor,
+       Gopher,
+       Cosmos,
+       Nova
+
+
     }
 }
 

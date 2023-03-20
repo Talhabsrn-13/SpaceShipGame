@@ -21,7 +21,6 @@ namespace Space.UIs
         [Header("MenuPanel")]
         [SerializeField] Image _menuShipImage;
 
-
         [Header("Shop")]
         [SerializeField] Image _currentShipImage;
         [SerializeField] TMP_Text _currentTitle;

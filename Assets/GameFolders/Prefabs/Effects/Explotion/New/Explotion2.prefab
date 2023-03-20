@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7324044610549964759}
   - component: {fileID: -334006313770949049}
   m_Layer: 0
-  m_Name: Explotion7
+  m_Name: Explotion2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,5 +115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708aa7ecc3bf8cc4b8fe6f99ae5ab931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletType: 0
-  _parentTransform: {fileID: 0}
+  _bulletType: 1

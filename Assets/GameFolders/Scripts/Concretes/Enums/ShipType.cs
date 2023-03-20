@@ -6,12 +6,15 @@ namespace Space.Enums
 {
     public enum ShipType
     {
-        Blue,
-        DarkRed,
-        Gray,
-        Purple,
-        Yellow,
-        Green,
-        Red
+        AntiVirus,
+        Carmelo,
+        Alpha,
+        Full,
+        Loki,
+        Proctor,
+        Gopher,
+        Cosmos,
+        Nova
+
     }
 }

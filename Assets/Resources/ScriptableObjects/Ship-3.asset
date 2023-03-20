@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Image: {fileID: 21300000, guid: 53a5767c391ae6c43a8c5ea95128542a, type: 3}
   title: Alpha-13
-  damage: 40
-  price: 80
-  level: 3
+  damage: 50
+  price: 160
+  level: 4
   priceMultiplier: 2
   damageMultiplier: 10
-  ownership: 0
+  ownership: 1

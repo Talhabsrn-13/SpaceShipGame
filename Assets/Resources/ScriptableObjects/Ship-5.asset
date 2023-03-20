@@ -19,4 +19,4 @@ MonoBehaviour:
   level: 2
   priceMultiplier: 2
   damageMultiplier: 10
-  ownership: 0
+  ownership: 1
