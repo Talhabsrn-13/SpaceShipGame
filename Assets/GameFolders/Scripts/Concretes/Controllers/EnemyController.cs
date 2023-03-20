@@ -60,6 +60,8 @@ namespace Space.Controller
         }
         public void Death()
         {
+            GameManager.Instance.Score += 100;
+
             Instantiate(_explosionEffect, this.transform.position, Quaternion.identity);
             //pool
             if (_chance < 0.1f)
@@ -73,7 +75,7 @@ namespace Space.Controller
         }
         private void OnDisable()
         {
-            GameManager.Instance.Score += 100;
+           // GameManager.Instance.Score += 100;
         }
     }
 }

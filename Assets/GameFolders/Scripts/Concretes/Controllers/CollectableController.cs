@@ -13,7 +13,8 @@ namespace Space.Controller
         [SerializeField] float _speed;
         [SerializeField] CollectableType _collectableType;
         VerticalMover _mover;
-
+        float _currentTime=0;
+        float _maxTime = 10f;
         public Transform Transform => this.transform;
 
         public CollectableType CollectableType => _collectableType;
@@ -25,6 +26,12 @@ namespace Space.Controller
         }
         private void FixedUpdate()
         {
+            _currentTime += Time.deltaTime;
+            if (_currentTime >_maxTime)
+            {
+                _currentTime = 0;
+                KillyourSelf();
+            }
             _mover.FixedTick(false, _speed);
         }
 

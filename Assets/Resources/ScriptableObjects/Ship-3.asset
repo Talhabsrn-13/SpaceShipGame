@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dcc164b353f8b4f8c7d0d60c03b059, type: 3}
   m_Name: Ship-3
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: a9aec87b46a88be448e444c5e3b39a36, type: 3}
-  title: Gray Archer
-  damage: 11
-  price: 10
-  level: 2
+  Image: {fileID: 21300000, guid: 53a5767c391ae6c43a8c5ea95128542a, type: 3}
+  title: Alpha-13
+  damage: 40
+  price: 80
+  level: 3
   priceMultiplier: 2
   damageMultiplier: 10
   ownership: 0

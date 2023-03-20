@@ -1,4 +1,5 @@
 using Space.Abstract.Entity;
+using Space.UIs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,22 +8,41 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
 {
     [SerializeField] int levelCount;
     [SerializeField] int randomLevelLowerLimit;
-
-
+    [SerializeField] GameObject _gameCanvas;
     EventData _eventData;
     GameState _gameState = GameState.Idle;
 
+    int _gameScore;
     private int _bulletLvl = 1;
-    public int Score { get; set; }
+    public int Score
+    {
+        get
+        {
+            return _gameScore;
+        }
+        set
+        {
+            _gameScore = value;
+            _gameCanvas.GetComponent<GameCanvasController>().SetScore();
+        }
+    }
     public int BulletLvl
     {
         get { return _bulletLvl; }
-        set { _bulletLvl = value; }
+        set
+        {
+            _bulletLvl = value;
+            _gameCanvas.GetComponent<GameCanvasController>().SetBulletLevel();
+        }
     }
     private void Awake()
     {
         SingletonThisObject(this);
         _eventData = Resources.Load("EventData") as EventData;
+    }
+    private void Start()
+    {
+        //   StartCoroutine(WakeUp());
     }
 
 
@@ -35,6 +55,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         get => _gameState;
         set => _gameState = value;
     }
+
     #region LastShip
     public int LastShipIndex
     {
@@ -43,8 +64,8 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     }
     public int LastHaveShipIndex
     {
-        get => PlayerPrefs.GetInt("LastShipIndex", 0);
-        set => PlayerPrefs.SetInt("LastShipIndex", value);
+        get => PlayerPrefs.GetInt("LastHaveShipIndex", 0);
+        set => PlayerPrefs.SetInt("LastHaveShipIndex", value);
     }
     #endregion
 
@@ -55,6 +76,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         set => PlayerPrefs.SetInt("MoneyData", value);
     }
     #endregion
+
     #region Level System
     public int EndlessLevel
     {
@@ -115,10 +137,6 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
 
     #endregion
 
-    private void Start()
-    {
-        //   StartCoroutine(WakeUp());
-    }
 
     public void RestartGame()
     {

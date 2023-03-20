@@ -39,6 +39,7 @@ namespace Space.Controller
                 KillYourSelf();
             }
         }
+
         private void FixedUpdate()
         {
             Vector2 pos = transform.position;
@@ -51,7 +52,6 @@ namespace Space.Controller
         {        
             Managers.BulletManager.Instance.SetPool(this);
         }
-
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

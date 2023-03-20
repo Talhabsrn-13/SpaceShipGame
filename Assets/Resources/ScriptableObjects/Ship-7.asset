@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dcc164b353f8b4f8c7d0d60c03b059, type: 3}
   m_Name: Ship-7
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: 41835d0502baf164fb796bf50f2a8098, type: 3}
-  title: Red Alpha
-  damage: 15
-  price: 10
-  level: 1
+  Image: {fileID: 21300000, guid: 58f374432e924b4408191f5d53a7c251, type: 3}
+  title: G-Gopher
+  damage: 30
+  price: 40
+  level: 2
   priceMultiplier: 2
   damageMultiplier: 10
   ownership: 0

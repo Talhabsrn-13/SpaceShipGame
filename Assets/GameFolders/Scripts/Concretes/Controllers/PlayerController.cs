@@ -77,6 +77,7 @@ namespace Space.Controller
                 }
                 other.GetComponent<CollectableController>().KillyourSelf();
 
+
                 GameManager.Instance.Score += 500;
 
             }

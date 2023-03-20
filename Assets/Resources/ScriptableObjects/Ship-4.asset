@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dcc164b353f8b4f8c7d0d60c03b059, type: 3}
   m_Name: Ship-4
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: d8acf77834e295f40abaa134a2a21baf, type: 3}
-  title: "F\u0131rat"
-  damage: 50
-  price: 10
-  level: 1
+  Image: {fileID: 21300000, guid: 21ab157902187534ea88e145052d508b, type: 3}
+  title: Full-Kudos
+  damage: 110
+  price: 10240
+  level: 10
   priceMultiplier: 2
   damageMultiplier: 10
   ownership: 0

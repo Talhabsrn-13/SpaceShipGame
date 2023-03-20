@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dcc164b353f8b4f8c7d0d60c03b059, type: 3}
   m_Name: Ship-8
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: 41835d0502baf164fb796bf50f2a8098, type: 3}
-  title: Red Alpha
-  damage: 25
-  price: 20
-  level: 2
+  Image: {fileID: 21300000, guid: 51eeeab7dfeb3324d8d269eda5217cfe, type: 3}
+  title: Cosmos
+  damage: 40
+  price: 80
+  level: 3
   priceMultiplier: 2
   damageMultiplier: 10
   ownership: 0

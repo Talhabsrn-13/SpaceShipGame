@@ -69,9 +69,9 @@ namespace Space.UIs
         }
         public void SelectButton(int index)
         {
-            if (GameManager.Instance.LastHaveShipIndex != index && _shopItemSO[index].ownership)
-            {
-                _selectShipButton.gameObject.SetActive(true);
+            if (_shopItemSO[index].ownership&& GameManager.Instance.LastHaveShipIndex != index)
+            { 
+                    _selectShipButton.gameObject.SetActive(true);
             }
             else
             {
@@ -121,7 +121,6 @@ namespace Space.UIs
 
         private void SelectShipButton()
         {
-            Debug.Log("çalýþtý");
             if (_shopItemSO[GameManager.Instance.LastShipIndex].ownership)
             {
                 GameManager.Instance.LastHaveShipIndex = GameManager.Instance.LastShipIndex;
