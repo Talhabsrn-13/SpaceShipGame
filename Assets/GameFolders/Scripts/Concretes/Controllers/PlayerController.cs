@@ -33,7 +33,7 @@ namespace Space.Controller
 
             for (int i = 0; i < _gunPrefabs.Length; i++)
             {
-               _gunPrefabs[i] = _ships[GameManager.Instance.LastHaveShipIndex].GetComponent<ShipController>().Guns[i];
+                _gunPrefabs[i] = _ships[GameManager.Instance.LastHaveShipIndex].GetComponent<ShipController>().Guns[i];
             }
         }
         private void Update()
@@ -69,16 +69,17 @@ namespace Space.Controller
             ICollectable collectableController = other.GetComponent<ICollectable>();
             if (collectableController != null && !_isDead)
             {
-                //score alma level atlatma
                 if (collectableController.CollectableType == CollectableType.GunPower)
                 {
-                    if (GameManager.Instance.BulletLvl > _gunPrefabs.Length)
+                    GameManager.Instance.BulletLvl++;
+
+                    if (GameManager.Instance.BulletLvl >= _gunPrefabs.Length)
                     {
                         GameManager.Instance.Score += 500;
                     }
                     else
                     {
-                        GunLevelUp(GameManager.Instance.BulletLvl++);
+                        GunLevelUp();
                     }
                 }
                 other.GetComponent<CollectableController>().KillyourSelf();
@@ -88,12 +89,25 @@ namespace Space.Controller
 
             }
         }
-        private void GunLevelUp(int level)
-        {   
-            _gunPrefabs[level].SetActive(true);
-
-            for (int i = 0; i < level; i++)
+        private void GunLevelUp()
+        {
+         
+            if (GameManager.Instance.BulletLvl % 2 == 0)
             {
+                _gunPrefabs[0].SetActive(false);
+                _gunPrefabs[GameManager.Instance.BulletLvl].SetActive(true);
+                _gunPrefabs[GameManager.Instance.BulletLvl - 1].SetActive(true);
+            }
+            else
+            {
+                _gunPrefabs[0].SetActive(true);
+                //_gunPrefabs[0].GetComponent<PlayerBulletSpawnManager>().CanShot = true;
+            }
+            for (int i = 0; i < GameManager.Instance.BulletLvl-1; i++)
+            {
+                if (GameManager.Instance.BulletLvl % 2 == 0 && i == 0) continue; 
+             
+   
                 _gunPrefabs[i].GetComponent<PlayerBulletSpawnManager>().ResetInvoke();
             }
         }

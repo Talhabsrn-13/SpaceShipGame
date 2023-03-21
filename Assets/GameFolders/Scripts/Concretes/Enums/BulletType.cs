@@ -14,8 +14,8 @@ namespace Space.Enums
        Proctor,
        Gopher,
        Cosmos,
-       Nova
-
+       Nova,
+       EnemyExplosionEffect
 
     }
 }

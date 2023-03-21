@@ -143,6 +143,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     public void NextLevel(int index)
     {
         SceneManager.LoadScene(index);
+        _bulletLvl = 1;
         //InGameGold = StartCountData;
         //_gameState = GameState.Idle;
         //LevelLastGold = 0;

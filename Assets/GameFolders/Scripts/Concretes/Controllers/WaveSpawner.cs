@@ -1,3 +1,6 @@
+using Space.Controller;
+using Space.Enums;
+using Space.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,10 +21,11 @@ public class WaveSpawner : MonoBehaviour
 
     public Wave[] waves;
     private int nextWave = 0;
+    bool rightOrLeft;
 
     [SerializeField] Transform[] spawnPoints;
 
-
+    Transform _sp;
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
 
@@ -105,10 +109,22 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(Transform _enemy)
     {
-        // Spawn Enemy with pool
-        Debug.Log("Spawning Enemy" + _enemy.name);
-        Transform _sp = spawnPoints[Random.RandomRange(0, spawnPoints.Length)];
-        Instantiate(_enemy, _sp.transform.position, _sp.transform.rotation);
-     
+    
+        if (rightOrLeft)
+        {
+            _sp = spawnPoints[0];
+            rightOrLeft = false;
+        }
+        else
+        {
+            _sp = spawnPoints[1];
+            rightOrLeft = true;
+        }
+       
+        EnemyController newEnemy = EnemyManager.Instance.GetPool((EnemyType)0);
+        newEnemy.transform.parent = _sp.transform;
+        newEnemy.transform.position = _sp.transform.position;
+        newEnemy.transform.rotation = transform.rotation;
+        newEnemy.gameObject.SetActive(true);
     }
 }

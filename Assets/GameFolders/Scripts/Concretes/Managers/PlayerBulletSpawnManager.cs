@@ -20,7 +20,7 @@ namespace Space.Managers
             _direction = (transform.localRotation * Vector2.up).normalized;
            
             _player = GetComponentInParent<PlayerController>();
-            InvokeRepeating("Spawn", 1, _fireTime);
+         
         }
         void Spawn()
         {
@@ -39,6 +39,14 @@ namespace Space.Managers
             InvokeRepeating("Spawn", 0.1f, _fireTime);
         }
 
+        private void OnEnable()
+        {
+            InvokeRepeating("Spawn", 1, _fireTime);
+        }
+        private void OnDisable()
+        {
+            CancelInvoke("Spawn");
+        }
     }
 
 }
