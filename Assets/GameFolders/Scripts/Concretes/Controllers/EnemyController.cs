@@ -1,6 +1,7 @@
 using Space.Abstract.Controller;
 using Space.Enums;
 using Space.Managers;
+using Space.UIs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,7 +85,8 @@ namespace Space.Controller
         }
         private void OnDisable()
         {
-            GameManager.Instance.Score += 100;
+            GameManager.Instance.Score += 50;
+            GameCanvasController.Instance.SetScore();
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Space.Abstract.Entity;
+using Space.UIs;
 
 namespace Space.Controller
 {
@@ -72,26 +73,25 @@ namespace Space.Controller
                 if (collectableController.CollectableType == CollectableType.GunPower)
                 {
                     GameManager.Instance.BulletLvl++;
+                    
 
                     if (GameManager.Instance.BulletLvl >= _gunPrefabs.Length)
                     {
-                        GameManager.Instance.Score += 500;
+                        GameManager.Instance.Score += 100;
+                        GameCanvasController.Instance.SetScore();
                     }
                     else
                     {
                         GunLevelUp();
+                        GameCanvasController.Instance.SetBulletLevel();
                     }
                 }
                 other.GetComponent<CollectableController>().KillyourSelf();
-
-
-                GameManager.Instance.Score += 500;
-
             }
         }
         private void GunLevelUp()
         {
-         
+
             if (GameManager.Instance.BulletLvl % 2 == 0)
             {
                 _gunPrefabs[0].SetActive(false);
@@ -101,19 +101,19 @@ namespace Space.Controller
             else
             {
                 _gunPrefabs[0].SetActive(true);
-                //_gunPrefabs[0].GetComponent<PlayerBulletSpawnManager>().CanShot = true;
             }
-            for (int i = 0; i < GameManager.Instance.BulletLvl-1; i++)
+            for (int i = 0; i < GameManager.Instance.BulletLvl - 1; i++)
             {
-                if (GameManager.Instance.BulletLvl % 2 == 0 && i == 0) continue; 
-             
-   
+                if (GameManager.Instance.BulletLvl % 2 == 0 && i == 0) continue;
+
+
                 _gunPrefabs[i].GetComponent<PlayerBulletSpawnManager>().ResetInvoke();
             }
         }
         public void TakeDamage()
         {
             _isDead = true;
+            GameCanvasController.Instance.LosePanel();
             GameManager.Instance.StopGame();
         }
     }

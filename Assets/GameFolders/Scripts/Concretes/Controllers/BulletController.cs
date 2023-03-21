@@ -13,7 +13,7 @@ namespace Space.Controller
     public class BulletController : MonoBehaviour, IEntityController
     {
         [SerializeField] BulletType _bulletType;
-        [SerializeField] float _maxLifeTime;
+        private float _maxLifeTime = 2f;
 
         [SerializeField] Vector2 _direction = new Vector2(0, 1);
         [SerializeField] float _speed = 2f;

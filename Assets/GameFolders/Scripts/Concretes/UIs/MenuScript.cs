@@ -30,7 +30,7 @@ namespace Space.UIs
         [SerializeField] TMP_Text _currentUpgradeOrBuy;
         [SerializeField] ShopItemSO[] _shopItemSO;
         [SerializeField] Image[] _shopItemImg;
-
+        [SerializeField] TMP_Text _currentMoney;
         private void Awake()
         {
             _exitButton.onClick.AddListener(ExitButton);
@@ -50,6 +50,7 @@ namespace Space.UIs
 
         private void UpgradeButton()
         {
+            
             if (GameManager.Instance.MoneyData >= _shopItemSO[GameManager.Instance.LastShipIndex].price)
             {
                 GameManager.Instance.MoneyData -= _shopItemSO[GameManager.Instance.LastShipIndex].price;
@@ -99,6 +100,7 @@ namespace Space.UIs
         }
         public void ColorControl()
         {
+            _currentMoney.text = GameManager.Instance.MoneyData.ToString();
             for (int i = 0; i < _shopItemSO.Length; i++)
             {
                 if (!_shopItemSO[i].ownership)
