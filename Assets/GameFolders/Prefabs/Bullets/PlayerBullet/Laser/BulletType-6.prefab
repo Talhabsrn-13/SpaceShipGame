@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: _bulletType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -9093771366072747282, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
+      propertyPath: _bulletTypeSO
+      value: 
+      objectReference: {fileID: 11400000, guid: a49885e66f80ee74e9015d5007ebb570, type: 2}
     - target: {fileID: 2676544499336978814, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: m_Size.x
       value: 0.03

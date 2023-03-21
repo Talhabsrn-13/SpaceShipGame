@@ -12,6 +12,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -9093771366072747282, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
+      propertyPath: _bulletTypeSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 4bfa69e37f7848147885bbb9e3cb4a43, type: 2}
+    - target: {fileID: -9093771366072747282, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: _explotionEffect
       value: 
       objectReference: {fileID: 503587766812751060, guid: 3b673bd5f68923d42b00b1097136bd43, type: 3}

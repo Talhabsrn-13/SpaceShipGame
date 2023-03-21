@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 namespace Space.UIs
 {
     public class GameCanvasController : MonoBehaviour
@@ -22,6 +23,12 @@ namespace Space.UIs
         public void SetScore()
         {
             _currentScore.text = GameManager.Instance.Score.ToString();
+        }
+
+
+        public void ReturnMainMenu()
+        {
+            SceneManager.LoadScene(0);
         }
     }
 

@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -9093771366072747282, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
+      propertyPath: _bulletTypeSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 859e54995f9d48244a4445f41cf45ce3, type: 2}
+    - target: {fileID: -9093771366072747282, guid: 0506e9b476545bb4a891e75fe38904bd, type: 3}
       propertyPath: _explotionEffect
       value: 
       objectReference: {fileID: 2369001440777515194, guid: 12d0bb477d0cefb43abe799b70bd395c, type: 3}

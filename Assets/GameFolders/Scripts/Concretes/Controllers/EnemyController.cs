@@ -1,4 +1,5 @@
 using Space.Abstract.Controller;
+using Space.Enums;
 using Space.Managers;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace Space.Controller
         float _currentTime = 0f;
         bool _canIncrease = true;
         float _chance;
+
+        EnemyType _enemyType;
+
+        public EnemyType EnemyType => _enemyType;
 
 
 
