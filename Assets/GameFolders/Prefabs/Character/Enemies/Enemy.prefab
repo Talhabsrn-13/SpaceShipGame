@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5983506309454717860}
   - component: {fileID: 5983506309454717861}
   - component: {fileID: 5983506309454717857}
+  - component: {fileID: 2060268791}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -176,10 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e770c65365a31498ec5c0130f315e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionEffect: {fileID: 4002719289771519226, guid: 621d9e90bf2437444b7ee5a351b4cd24, type: 3}
   _min: 13.47
   _max: 30
-  _spawnerTransform: {fileID: 0}
   _bullet: {fileID: -1509413160444785118, guid: 6fa8af4dc88a7f845bcb42190070a07f, type: 3}
 --- !u!114 &5983506309454717857
 MonoBehaviour:
@@ -194,3 +193,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthInfo: 100
+--- !u!114 &2060268791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983506309454717866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e8e4a33ed48f048bf0fa78d6407655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  moveSpeed: 5

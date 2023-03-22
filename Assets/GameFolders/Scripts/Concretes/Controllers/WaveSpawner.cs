@@ -10,6 +10,7 @@ public class WaveSpawner : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING }
     EventData _eventData;
+    [SerializeField] Transform[] _paths;
     [System.Serializable]
     public class Wave
     {
@@ -128,6 +129,8 @@ public class WaveSpawner : MonoBehaviour
         newEnemy.transform.parent = _sp.transform;
         newEnemy.transform.position = _sp.transform.position;
         newEnemy.transform.rotation = transform.rotation;
+        newEnemy.GetComponent<PathController>()._points = _paths;
         newEnemy.gameObject.SetActive(true);
+        
     }
 }
