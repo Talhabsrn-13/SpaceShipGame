@@ -31,8 +31,11 @@ namespace Space.UIs
         [SerializeField] ShopItemSO[] _shopItemSO;
         [SerializeField] Image[] _shopItemImg;
         [SerializeField] TMP_Text _currentMoney;
+
+        EventData _eventData;
         private void Awake()
         {
+            _eventData = Resources.Load("EventData") as EventData;
             _exitButton.onClick.AddListener(ExitButton);
             _mapButton.onClick.AddListener(MapButton);
             _startButton.onClick.AddListener(StartButton);
@@ -118,6 +121,7 @@ namespace Space.UIs
         private void StartButton()
         {
             GameManager.Instance.NextLevel(1);
+            _eventData?.OnPlay.Invoke();
         }
 
         private void SelectShipButton()
@@ -140,7 +144,41 @@ namespace Space.UIs
             Application.Quit();
         }
         #endregion
+        #region EventData
+        // hepsini dinlemesine gerek yok
 
+        private void OnEnable()
+        {
+            _eventData.OnPlay += OnPlay;
+            _eventData.OnWin += OnWin;
+            _eventData.OnLose += OnLose;
+            _eventData.OnIdle += OnIdle;
+        }
+        private void OnDestroy()
+        {
+            _eventData.OnPlay -= OnPlay;
+            _eventData.OnWin -= OnWin;
+            _eventData.OnLose -= OnLose;
+            _eventData.OnIdle -= OnIdle;
+
+        }
+        private void OnPlay()
+        {
+            
+        }
+        private void OnWin()
+        {
+          
+        }
+        private void OnLose()
+        {  
+
+        }
+        private void OnIdle()
+        {
+           
+        }
+        #endregion
     }
 
 

@@ -35,7 +35,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     }
     private void Awake()
     {
-        SingletonThisObject(this);
+        SingletonThisObject(this, true);
         _eventData = Resources.Load("EventData") as EventData;
     }
     private void Start()
@@ -72,6 +72,12 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     {
         get => PlayerPrefs.GetInt("MoneyData", 10000);
         set => PlayerPrefs.SetInt("MoneyData", value);
+    }
+    private int _earnedMoney;
+    public int EarnedMoneyData
+    {
+        get { return _earnedMoney; }
+        set { _earnedMoney = value; }
     }
     #endregion
 
@@ -119,6 +125,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     private void OnPlay()
     {
         _gameState = GameState.Play;
+
     }
     private void OnWin()
     {
@@ -127,6 +134,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     private void OnLose()
     {
         _gameState = GameState.Lose;
+        EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(10, 15));
     }
     private void OnIdle()
     {
@@ -139,6 +147,9 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _eventData?.OnPlay.Invoke();
+        BulletLvl = 1;
+        Score = 0;
     }
     public void NextLevel(int index)
     {
@@ -152,7 +163,10 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         //SceneManager.LoadScene(Level);
         ////StartCoroutine(StartAd());
     }
-
+    public void LoseLevel()
+    {
+     
+    }
     public void StopGame()
     {
         Time.timeScale = 0f;

@@ -25,15 +25,14 @@ namespace Space.Controller
         public EnemyType EnemyType => _enemyType;
 
 
+        EventData _eventData;
 
         [SerializeField] EnemyBulletController _bullet;
         public bool CanIncrease => _canIncrease;
-        private void Start()
+        private void Awake()
         {
-           
-            
+            _eventData = Resources.Load("EventData") as EventData;
         }
-
 
         private void OnEnable()
         {
@@ -68,7 +67,9 @@ namespace Space.Controller
         }
         public void Death()
         {
-            
+            GameManager.Instance.Score += 50;
+            _eventData?.OnScore.Invoke();
+
             EffectController newEffect = EffectManager.Instance.GetPool(BulletType.EnemyExplosionEffect);
             newEffect.transform.position = transform.position;
             newEffect.gameObject.SetActive(true);
@@ -82,11 +83,6 @@ namespace Space.Controller
                 newItem.gameObject.SetActive(true);
             }
             Destroy(gameObject);
-        }
-        private void OnDisable()
-        {
-            GameManager.Instance.Score += 50;
-            GameCanvasController.Instance.SetScore();
         }
     }
 }

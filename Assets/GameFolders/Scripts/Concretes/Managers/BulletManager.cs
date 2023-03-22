@@ -13,9 +13,11 @@ namespace Space.Managers
         [SerializeField] BulletController[] _bulletPrefabs;
 
         Dictionary<BulletType, Queue<BulletController>> _bullets = new Dictionary<BulletType, Queue<BulletController>>();
+
+
         private void Awake()
         {
-            SingletonThisObject(this);
+            SingletonThisObject(this, false);
         }
 
         private void Start()

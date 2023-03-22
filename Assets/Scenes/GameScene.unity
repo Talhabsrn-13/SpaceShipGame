@@ -1306,7 +1306,7 @@ GameObject:
   - component: {fileID: 301203379}
   - component: {fileID: 301203378}
   m_Layer: 5
-  m_Name: ReplayBtn
+  m_Name: RepeatBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2302,18 +2302,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 483154, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.64834785
-      objectReference: {fileID: 0}
-    - target: {fileID: 483154, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.64834785
-      objectReference: {fileID: 0}
-    - target: {fileID: 483154, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.64834785
-      objectReference: {fileID: 0}
-    - target: {fileID: 483154, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2352,38 +2340,6 @@ PrefabInstance:
     - target: {fileID: 483154, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19876930, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19876930, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: lengthInSec
-      value: 0.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 19876930, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: moveWithTransform
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19876930, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: startDelay.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19876930, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: InitialModule.startSpeed.minScalar
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 19876930, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19928906, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19980108, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
@@ -3439,6 +3395,10 @@ PrefabInstance:
     - target: {fileID: 4027985633878583944, guid: 5822a8f195dee3643bdee58ec2b45e59, type: 3}
       propertyPath: m_Name
       value: GameCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027985633878583944, guid: 5822a8f195dee3643bdee58ec2b45e59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5822a8f195dee3643bdee58ec2b45e59, type: 3}
@@ -4878,6 +4838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfbb0e0f6a88c3644b16dc1d49ffcb36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveInGameScene: 0
   _enemyPrefabs:
   - {fileID: 5983506309454717861, guid: 298eadcc552cade4ebe9901f8b7bcff4, type: 3}
 --- !u!4 &1320290974
@@ -5063,7 +5024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1402282477
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5357,7 +5318,12 @@ MonoBehaviour:
   - {fileID: 1856416652}
   - {fileID: 2101908622}
   _currentScore: {fileID: 1228406205}
-  _losePanel: {fileID: 0}
+  _losePanel: {fileID: 1402282476}
+  _loseScoreText: {fileID: 1426358794}
+  _earnMoneyText: {fileID: 348707597}
+  _closeButton: {fileID: 1867721406}
+  _repeatLvlButton: {fileID: 301203378}
+  _goToMapSceneButton: {fileID: 1674906303}
 --- !u!1 &1442940541
 GameObject:
   m_ObjectHideFlags: 0
@@ -6099,7 +6065,7 @@ GameObject:
   - component: {fileID: 1674906304}
   - component: {fileID: 1674906303}
   m_Layer: 5
-  m_Name: PlayBtn
+  m_Name: MapSceneButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7173,7 +7139,7 @@ GameObject:
   - component: {fileID: 1867721407}
   - component: {fileID: 1867721406}
   m_Layer: 5
-  m_Name: ReturnBtn
+  m_Name: CloseBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

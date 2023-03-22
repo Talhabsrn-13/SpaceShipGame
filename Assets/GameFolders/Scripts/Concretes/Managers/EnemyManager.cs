@@ -15,7 +15,7 @@ namespace Space.Managers
         Dictionary<EnemyType, Queue<EnemyController>> _enemies = new Dictionary<EnemyType, Queue<EnemyController>>();
         private void Awake()
         {
-            SingletonThisObject(this);
+            SingletonThisObject(this, false);
         }
 
         private void Start()

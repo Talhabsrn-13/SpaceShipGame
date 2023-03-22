@@ -18,8 +18,10 @@ namespace Space.Controller
         [SerializeField] Vector2 _direction = new Vector2(0, 1);
         [SerializeField] float _speed = 2f;
         [SerializeField] Vector2 _velocity;
-
+        private bool _pause;
         [SerializeField] ShopItemSO _bulletTypeSO;
+
+        EventData _eventData;
         public BulletType BulletType => _bulletType;
         public Vector2 Direction
         {
@@ -30,9 +32,13 @@ namespace Space.Controller
         public int Damage { get; set; }
         public object BulletManager { get; private set; }
 
-
+        private void Awake()
+        {
+            _eventData = Resources.Load("EventData") as EventData;
+        }
         private void Update()
         {
+            if (!GameManager.Instance.Playability()) return ;
             _velocity = _direction * _speed;
             _currentLifeTime += Time.deltaTime;
             if (_currentLifeTime > _maxLifeTime)
@@ -69,5 +75,18 @@ namespace Space.Controller
                 Debug.Log(_bulletTypeSO.damage);
             }
         }
+
+        private void OnEnable()
+        {
+            _eventData.OnLose += KillYourSelf;
+            _eventData.OnWin += KillYourSelf;
+        }
+        private void OnDisable()
+        {
+            _eventData.OnLose -= KillYourSelf;
+            _eventData.OnWin -= KillYourSelf;
+        }
+
+
     }
 }

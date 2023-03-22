@@ -17,15 +17,23 @@ namespace Space.Controller
         [SerializeField] float _yRange;
         [SerializeField] GameObject[] _gunPrefabs;
         [SerializeField] GameObject[] _ships;
+
+       
         Vector2 _destionation;
         IMover _mover;
+
         bool _isDead = false;
+
         [SerializeField] ShipType _shipType;
         public ShipType ShipType => _shipType;
+
+        EventData _eventData;
         private void Awake()
         {
             _mover = new PlayerMovement(this);
             _destionation = transform.position;
+            _eventData = Resources.Load("EventData") as EventData;
+            _eventData.Player = this;
         }
         private void Start()
         {
@@ -73,17 +81,17 @@ namespace Space.Controller
                 if (collectableController.CollectableType == CollectableType.GunPower)
                 {
                     GameManager.Instance.BulletLvl++;
-                    
+
 
                     if (GameManager.Instance.BulletLvl >= _gunPrefabs.Length)
                     {
                         GameManager.Instance.Score += 100;
-                        GameCanvasController.Instance.SetScore();
+                        _eventData?.OnScore.Invoke();
                     }
                     else
                     {
                         GunLevelUp();
-                        GameCanvasController.Instance.SetBulletLevel();
+                        _eventData?.OnBulletUpgrade.Invoke();
                     }
                 }
                 other.GetComponent<CollectableController>().KillyourSelf();
@@ -91,6 +99,7 @@ namespace Space.Controller
         }
         private void GunLevelUp()
         {
+            if (!GameManager.Instance.Playability()) return;
 
             if (GameManager.Instance.BulletLvl % 2 == 0)
             {
@@ -107,14 +116,14 @@ namespace Space.Controller
                 if (GameManager.Instance.BulletLvl % 2 == 0 && i == 0) continue;
 
 
-                _gunPrefabs[i].GetComponent<PlayerBulletSpawnManager>().ResetInvoke();
+                _gunPrefabs[i].GetComponent<PlayerBulletSpawnManager>().ResetInvoke(false);
+               
             }
         }
         public void TakeDamage()
         {
             _isDead = true;
-            GameCanvasController.Instance.LosePanel();
-            GameManager.Instance.StopGame();
+            _eventData?.OnLose.Invoke();
         }
     }
 }

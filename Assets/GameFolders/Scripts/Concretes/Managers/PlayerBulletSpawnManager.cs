@@ -9,22 +9,32 @@ namespace Space.Managers
 {
     public class PlayerBulletSpawnManager : MonoBehaviour
     {
-        public bool CanShot { get; set; }
         [SerializeField] Transform _spawnerTransform;
         [SerializeField] float _fireTime;
         Vector2 _direction;
         PlayerController _player;
-        //look
+      
+        EventData _eventData;
+
+        ParticleSystem _particle;
+
+        private void Awake()
+        {
+            _eventData = Resources.Load("EventData") as EventData;
+           
+        }
         private void Start()
         {
+            _particle = GetComponentInChildren<ParticleSystem>();
             _direction = (transform.localRotation * Vector2.up).normalized;
-           
             _player = GetComponentInParent<PlayerController>();
-         
+
         }
         void Spawn()
         {
-            if (CanShot) return;
+            if (!GameManager.Instance.Playability()) return;
+
+            if (!_particle.isPlaying) _particle.Play();
 
             BulletController newBullet = BulletManager.Instance.GetPool((BulletType)_player.ShipType);
             newBullet.transform.parent = _spawnerTransform.transform;
@@ -33,20 +43,56 @@ namespace Space.Managers
             newBullet.transform.rotation = transform.rotation;
             newBullet.gameObject.SetActive(true);
         }
-        public void ResetInvoke()
+        public void ResetInvoke(bool CanShot)
         {
+
             CancelInvoke("Spawn");
+
             InvokeRepeating("Spawn", 0.1f, _fireTime);
+
         }
+
+
+        #region EventListener
 
         private void OnEnable()
         {
             InvokeRepeating("Spawn", 1, _fireTime);
+            _eventData.OnPlay += OnPlay;
+            _eventData.OnWin += OnWin;
+            _eventData.OnLose += OnLose;
+            _eventData.OnIdle += OnIdle;
         }
         private void OnDisable()
         {
             CancelInvoke("Spawn");
+            _eventData.OnPlay -= OnPlay;
+            _eventData.OnWin -= OnWin;
+            _eventData.OnLose -= OnLose;
+            _eventData.OnIdle -= OnIdle;
         }
+   
+        private void OnPlay()
+        {
+
+        }
+        private void OnWin()
+        {
+           
+
+        }
+        private void OnLose()
+        {
+        
+
+        }
+        private void OnIdle()
+        {
+           
+        }
+
+        #endregion
+
     }
 
 }

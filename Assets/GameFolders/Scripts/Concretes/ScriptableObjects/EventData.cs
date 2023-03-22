@@ -14,7 +14,8 @@ public class EventData : ScriptableObject
         get => player;
         set => player = value;
     }
-
+    public Action OnScore;
+    public Action OnBulletUpgrade;
     public Action OnPlay;
     public Action OnWin;
     public Action OnLose;
