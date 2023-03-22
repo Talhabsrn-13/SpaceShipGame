@@ -15,6 +15,7 @@ namespace Space.UIs
       
         void Update()
         {
+            if (!GameManager.Instance.Playability()) return;
             timer += Time.deltaTime;
             int minutes = Mathf.FloorToInt(timer / 60f);
             int seconds = Mathf.FloorToInt(timer % 60f);

@@ -47,7 +47,7 @@ namespace Space.Controller
         }
         private void Update()
         {
-            if (_isDead) return;
+            if (_isDead || !GameManager.Instance.Playability()) return;
             if (Input.GetMouseButton(0))
             {
                 _destionation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -93,6 +93,11 @@ namespace Space.Controller
                         GunLevelUp();
                         _eventData?.OnBulletUpgrade.Invoke();
                     }
+                }
+                else if(collectableController.CollectableType == CollectableType.Score)
+                {
+                    GameManager.Instance.Score += 500;
+                    _eventData?.OnScore.Invoke();
                 }
                 other.GetComponent<CollectableController>().KillyourSelf();
             }

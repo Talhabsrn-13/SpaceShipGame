@@ -11,18 +11,12 @@ namespace Space.Managers
     {
         [SerializeField] Transform _spawnerTransform;
         [SerializeField] float _fireTime;
+     
         Vector2 _direction;
-        PlayerController _player;
       
-        EventData _eventData;
-
+        PlayerController _player;
         ParticleSystem _particle;
 
-        private void Awake()
-        {
-            _eventData = Resources.Load("EventData") as EventData;
-           
-        }
         private void Start()
         {
             _particle = GetComponentInChildren<ParticleSystem>();
@@ -58,38 +52,12 @@ namespace Space.Managers
         private void OnEnable()
         {
             InvokeRepeating("Spawn", 1, _fireTime);
-            _eventData.OnPlay += OnPlay;
-            _eventData.OnWin += OnWin;
-            _eventData.OnLose += OnLose;
-            _eventData.OnIdle += OnIdle;
         }
         private void OnDisable()
         {
             CancelInvoke("Spawn");
-            _eventData.OnPlay -= OnPlay;
-            _eventData.OnWin -= OnWin;
-            _eventData.OnLose -= OnLose;
-            _eventData.OnIdle -= OnIdle;
         }
-   
-        private void OnPlay()
-        {
 
-        }
-        private void OnWin()
-        {
-           
-
-        }
-        private void OnLose()
-        {
-        
-
-        }
-        private void OnIdle()
-        {
-           
-        }
 
         #endregion
 

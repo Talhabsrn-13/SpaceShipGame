@@ -72,7 +72,6 @@ namespace Space.Controller
 
                 KillYourSelf();
                 health.TakeDamage(_bulletTypeSO.damage);
-                Debug.Log(_bulletTypeSO.damage);
             }
         }
 

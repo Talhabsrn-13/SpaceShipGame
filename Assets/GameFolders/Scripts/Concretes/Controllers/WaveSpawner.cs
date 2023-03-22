@@ -9,7 +9,7 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING }
-
+    EventData _eventData;
     [System.Serializable]
     public class Wave
     {
@@ -33,12 +33,17 @@ public class WaveSpawner : MonoBehaviour
 
 
     private SpawnState state = SpawnState.COUNTING;
+    private void Awake()
+    {
+        _eventData = Resources.Load("EventData") as EventData;
+    }
     private void Start()
     {
         waveCountdown = timeBetweenWaves;
     }
     private void Update()
     {
+        if (!GameManager.Instance.Playability()) return;
         if (state == SpawnState.WAITING)
         {
             if (!EnemyIsAlive())
@@ -69,9 +74,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (nextWave + 1 > waves.Length - 1)
         {
-            // WÝN LEVEL.
-            nextWave = 0;
-            Debug.Log("ALL WAVES COMPLETE! lOOPÝNG");
+            _eventData?.OnWin.Invoke();
         }
         else
         {

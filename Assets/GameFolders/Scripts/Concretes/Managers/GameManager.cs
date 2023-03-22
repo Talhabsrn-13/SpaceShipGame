@@ -130,11 +130,14 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     private void OnWin()
     {
         _gameState = GameState.Win;
+        EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(5, 10));
+        MoneyData += EarnedMoneyData;
     }
     private void OnLose()
     {
         _gameState = GameState.Lose;
         EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(10, 15));
+        MoneyData += EarnedMoneyData;
     }
     private void OnIdle()
     {

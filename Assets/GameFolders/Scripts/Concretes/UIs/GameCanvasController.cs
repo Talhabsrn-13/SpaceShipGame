@@ -14,17 +14,27 @@ namespace Space.UIs
     {
         [SerializeField] Image[] _bulletLevelImages;
         [SerializeField] TMP_Text _currentScore;
-        [SerializeField] GameObject _losePanel;
+
+        [Header("Pause")]
+        [SerializeField] Button _continueButton;
+        [SerializeField] Button _pauseButton;
+
 
         [Header("LosePanel")]
+        [SerializeField] GameObject _losePanel;
         [SerializeField] TMP_Text _loseScoreText;
         [SerializeField] TMP_Text _earnMoneyText;
         [SerializeField] Button _closeButton;
         [SerializeField] Button _repeatLvlButton;
         [SerializeField] Button _goToMapSceneButton;
 
-        
 
+        [Header("WinPanel")]
+        [SerializeField] GameObject _winPanel;
+        [SerializeField] TMP_Text _winScoreText;
+        [SerializeField] TMP_Text _winEarnMoneyText;
+        [SerializeField] Button _winMainMenuButton;
+        [SerializeField] Button _winGoToMapButton;
 
         EventData _eventData;
         private void Awake()
@@ -33,10 +43,23 @@ namespace Space.UIs
             _closeButton.onClick.AddListener(ReturnMainMenu);
             _repeatLvlButton.onClick.AddListener(RepeatLevel);
             _goToMapSceneButton.onClick.AddListener(GoToMapScene);
+            _winMainMenuButton.onClick.AddListener(ReturnMainMenu);
+            _winGoToMapButton.onClick.AddListener(GoToMapScene);
+            _pauseButton.onClick.AddListener(PauseButton);
+            _continueButton.onClick.AddListener(ContinueButton);
         }
-        private void Start()
+
+        private void ContinueButton()
         {
-                    }
+            _eventData?.OnPlay.Invoke();
+            Debug.Log(GameManager.Instance.GameState);
+        }
+
+        private void PauseButton()
+        {
+            _eventData?.OnIdle.Invoke(); 
+        }
+
         public void ReturnMainMenu()
         {
             SceneManager.LoadScene(0);
@@ -85,11 +108,13 @@ namespace Space.UIs
         private void OnIdle()
         {
             //pause Screen
-           
+          
         }
         private void OnWin()
         {
-            
+            _winScoreText.text = GameManager.Instance.Score.ToString();
+            _winEarnMoneyText.text = GameManager.Instance.EarnedMoneyData.ToString();
+            _winPanel.SetActive(true);
         }
 
         private void OnLose()

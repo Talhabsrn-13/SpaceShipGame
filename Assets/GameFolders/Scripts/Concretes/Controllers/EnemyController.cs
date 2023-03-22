@@ -19,7 +19,7 @@ namespace Space.Controller
         float _currentTime = 0f;
         bool _canIncrease = true;
         float _chance;
-
+        int _collectableType;
         EnemyType _enemyType;
 
         public EnemyType EnemyType => _enemyType;
@@ -36,7 +36,7 @@ namespace Space.Controller
 
         private void OnEnable()
         {
-            _chance = Random.Range(0, 1f);
+            _chance = Random.Range(0, 2f);
             GetRandomSpawnTime();
 
         }
@@ -75,9 +75,17 @@ namespace Space.Controller
             newEffect.gameObject.SetActive(true);
 
   
-            if (_chance < 1f)
+            if (_chance < 0.3f)
             {
-                CollectableController newItem = CollectableManager.Instance.GetPool((CollectableType)0);
+                if (_chance <= 0.1f)
+                {
+                    _collectableType = 1; 
+                }
+                else
+                {
+                    _collectableType = 0;
+                }
+                CollectableController newItem = CollectableManager.Instance.GetPool((CollectableType)_collectableType);
                 newItem.transform.parent = CollectableManager.Instance.transform;
                 newItem.transform.position = new Vector3(transform.position.x, transform.position.y, 2);
                 newItem.gameObject.SetActive(true);
