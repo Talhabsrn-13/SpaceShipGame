@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 5983506309454717863}
   - component: {fileID: 5983506309454717860}
   - component: {fileID: 5983506309454717861}
-  - component: {fileID: 5983506309454717857}
   - component: {fileID: 2060268791}
+  - component: {fileID: 5983506309454717857}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -180,19 +180,6 @@ MonoBehaviour:
   _min: 13.47
   _max: 30
   _bullet: {fileID: -1509413160444785118, guid: 6fa8af4dc88a7f845bcb42190070a07f, type: 3}
---- !u!114 &5983506309454717857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5983506309454717866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6687d4994a706541a3674bea9450236, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthInfo: 100
 --- !u!114 &2060268791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,10 +193,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5983506309454717862}
+  - {fileID: 5983506309454717862}
+  - {fileID: 5983506309454717862}
+  - {fileID: 5983506309454717862}
+  - {fileID: 5983506309454717862}
+  - {fileID: 5983506309454717862}
   moveSpeed: 5
+--- !u!114 &5983506309454717857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983506309454717866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6687d4994a706541a3674bea9450236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthInfo: 100

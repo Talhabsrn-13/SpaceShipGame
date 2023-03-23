@@ -1,6 +1,7 @@
 using Space.Controller;
 using Space.Enums;
 using Space.Managers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,13 @@ public class WaveSpawner : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING }
     EventData _eventData;
+
     [SerializeField] Transform[] _paths;
     [System.Serializable]
     public class Wave
     {
         public string name;
-        public Transform enemy;
+        public int enemyType;
         public int count;
         public float rate;
     }
@@ -102,7 +104,7 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < _wave.count; i++)
         {
-            SpawnEnemy(_wave.enemy);
+            SpawnEnemy(_wave.enemyType);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
@@ -111,7 +113,7 @@ public class WaveSpawner : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(Transform _enemy)
+    void SpawnEnemy(int _enemy)
     {
     
         if (rightOrLeft)
@@ -125,12 +127,55 @@ public class WaveSpawner : MonoBehaviour
             rightOrLeft = true;
         }
        
-        EnemyController newEnemy = EnemyManager.Instance.GetPool((EnemyType)0);
+        EnemyController newEnemy = EnemyManager.Instance.GetPool((EnemyType)_enemy);
         newEnemy.transform.parent = _sp.transform;
         newEnemy.transform.position = _sp.transform.position;
         newEnemy.transform.rotation = transform.rotation;
-        newEnemy.GetComponent<PathController>()._points = _paths;
+        for (int i = 0; i < _paths.Length; i++)
+        {
+            newEnemy.GetComponent<PathController>()._points[i] = _paths[i];
+        }
+        
         newEnemy.gameObject.SetActive(true);
         
     }
+   
+    #region EventData
+
+
+    private void OnEnable()
+    {
+        _eventData.OnPlay += OnPlay;
+        _eventData.OnWin += OnWin;
+        _eventData.OnLose += OnLose;
+        _eventData.OnIdle += OnIdle;
+    }
+    private void OnDestroy()
+    {
+        _eventData.OnPlay -= OnPlay;
+        _eventData.OnWin -= OnWin;
+        _eventData.OnLose -= OnLose;
+        _eventData.OnIdle -= OnIdle;
+
+    }
+    private void OnPlay()
+    {
+
+    }
+    private void OnWin()
+    {
+        waveCountdown = timeBetweenWaves;
+
+    }
+    private void OnLose()
+    {
+        waveCountdown = timeBetweenWaves;
+
+    }
+    private void OnIdle()
+    {
+        waveCountdown = timeBetweenWaves;
+    }
+    #endregion
+
 }

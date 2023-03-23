@@ -9,7 +9,7 @@ namespace Space.Combats
     public class Health : MonoBehaviour, IHealth
     {
         [SerializeField] int _healthInfo;
-        //Scriptable object
+  
         int _currentHealth;
         public bool IsDead => _currentHealth <= 0;
         private void Awake()

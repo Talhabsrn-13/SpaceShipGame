@@ -6325,6 +6325,7 @@ MonoBehaviour:
   isActiveInGameScene: 0
   _enemyPrefabs:
   - {fileID: 5983506309454717861, guid: 298eadcc552cade4ebe9901f8b7bcff4, type: 3}
+  - {fileID: 7350943849545387563, guid: e981c691cc6c5df4fb3a94a4751f864a, type: 3}
 --- !u!4 &1320290974
 Transform:
   m_ObjectHideFlags: 0
@@ -11228,11 +11229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4652498407087363634, guid: ab203f6226b79844183b6a28b8ed9db1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4652498407087363634, guid: ab203f6226b79844183b6a28b8ed9db1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1097095
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4652498407087363634, guid: ab203f6226b79844183b6a28b8ed9db1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11265,6 +11266,22 @@ PrefabInstance:
     - target: {fileID: 4652498407087363637, guid: ab203f6226b79844183b6a28b8ed9db1, type: 3}
       propertyPath: m_Name
       value: Spawn Points
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652498407349727128, guid: ab203f6226b79844183b6a28b8ed9db1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652498407349727128, guid: ab203f6226b79844183b6a28b8ed9db1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652498407526132834, guid: ab203f6226b79844183b6a28b8ed9db1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652498407526132834, guid: ab203f6226b79844183b6a28b8ed9db1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab203f6226b79844183b6a28b8ed9db1, type: 3}
@@ -11561,7 +11578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5814501543317210541, guid: 2f23fdd13743f8c46b42e81e7d69d445, type: 3}
       propertyPath: timeBetweenWaves
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5814501543317210541, guid: 2f23fdd13743f8c46b42e81e7d69d445, type: 3}
       propertyPath: _paths.Array.size
@@ -11617,7 +11634,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5814501543317210541, guid: 2f23fdd13743f8c46b42e81e7d69d445, type: 3}
       propertyPath: waves.Array.data[0].count
-      value: 10
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814501543317210541, guid: 2f23fdd13743f8c46b42e81e7d69d445, type: 3}
+      propertyPath: waves.Array.data[1].count
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814501543317210541, guid: 2f23fdd13743f8c46b42e81e7d69d445, type: 3}
+      propertyPath: waves.Array.data[2].count
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f23fdd13743f8c46b42e81e7d69d445, type: 3}

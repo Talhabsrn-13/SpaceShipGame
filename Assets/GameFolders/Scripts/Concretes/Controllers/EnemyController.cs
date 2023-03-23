@@ -52,7 +52,7 @@ namespace Space.Controller
         private void Spawn()
         {
             EnemyBulletController newBullet = Instantiate(_bullet, transform.position, Quaternion.identity);
-            newBullet.transform.parent = this.transform;
+            newBullet.transform.parent = BulletManager.Instance.transform;
             newBullet.transform.position = this.transform.position;
             newBullet.gameObject.SetActive(true);
 
@@ -90,7 +90,7 @@ namespace Space.Controller
                 newItem.transform.position = new Vector3(transform.position.x, transform.position.y, 2);
                 newItem.gameObject.SetActive(true);
             }
-            Destroy(gameObject);
+            EnemyManager.Instance.SetPool(this);
         }
     }
 }

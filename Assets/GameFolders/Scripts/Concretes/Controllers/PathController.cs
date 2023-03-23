@@ -11,6 +11,7 @@ public class PathController : MonoBehaviour
 
     private int _pointsIndex;
 
+
     private void OnEnable()
     {
         transform.position = _points[_pointsIndex].transform.position;

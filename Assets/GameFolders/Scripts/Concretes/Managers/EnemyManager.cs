@@ -41,6 +41,7 @@ namespace Space.Managers
 
         internal void SetPool(EnemyController enemyController)
         {
+            Debug.Log("Worjing");
             enemyController.gameObject.SetActive(false);
             enemyController.transform.parent = this.transform;
             Queue<EnemyController> enemyControllers = _enemies[enemyController.EnemyType];
@@ -55,6 +56,7 @@ namespace Space.Managers
                 for (int i = 0; i < 10; i++)
                 {
                     EnemyController newEnemy = Instantiate(_enemyPrefabs[(int)enemyType]);
+                    newEnemy.gameObject.SetActive(false);
                     enemyControllers.Enqueue(newEnemy);
                 }
             }
