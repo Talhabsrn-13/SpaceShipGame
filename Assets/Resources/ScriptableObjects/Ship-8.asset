@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Image: {fileID: 21300000, guid: 51eeeab7dfeb3324d8d269eda5217cfe, type: 3}
   title: Cosmos
-  damage: 50
-  price: 160
-  level: 4
+  damage: 1
+  price: 320
+  level: 5
   priceMultiplier: 2
   damageMultiplier: 10
   ownership: 1

@@ -18,7 +18,7 @@ namespace Space.UIs
         [Header("Pause")]
         [SerializeField] Button _continueButton;
         [SerializeField] Button _pauseButton;
-
+        [SerializeField] Button _pauseGoToMenuButton;
 
         [Header("LosePanel")]
         [SerializeField] GameObject _losePanel;
@@ -47,6 +47,7 @@ namespace Space.UIs
             _winGoToMapButton.onClick.AddListener(GoToMapScene);
             _pauseButton.onClick.AddListener(PauseButton);
             _continueButton.onClick.AddListener(ContinueButton);
+            _pauseGoToMenuButton.onClick.AddListener(ReturnMainMenu);
         }
 
         private void ContinueButton()

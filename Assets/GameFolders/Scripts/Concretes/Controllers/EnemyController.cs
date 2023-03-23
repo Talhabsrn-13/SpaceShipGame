@@ -75,9 +75,9 @@ namespace Space.Controller
             newEffect.gameObject.SetActive(true);
 
   
-            if (_chance < 0.3f)
+            if (_chance < 1)
             {
-                if (_chance <= 0.1f)
+                if (_chance <= 0.5f)
                 {
                     _collectableType = 1; 
                 }

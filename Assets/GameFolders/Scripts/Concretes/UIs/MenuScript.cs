@@ -149,34 +149,18 @@ namespace Space.UIs
 
         private void OnEnable()
         {
-            _eventData.OnPlay += OnPlay;
-            _eventData.OnWin += OnWin;
-            _eventData.OnLose += OnLose;
             _eventData.OnIdle += OnIdle;
         }
         private void OnDestroy()
         {
-            _eventData.OnPlay -= OnPlay;
-            _eventData.OnWin -= OnWin;
-            _eventData.OnLose -= OnLose;
-            _eventData.OnIdle -= OnIdle;
 
-        }
-        private void OnPlay()
-        {
-            
-        }
-        private void OnWin()
-        {
-          
-        }
-        private void OnLose()
-        {  
+            _eventData.OnIdle -= OnIdle;
 
         }
         private void OnIdle()
         {
-           
+            SelectButton(GameManager.Instance.LastShipIndex);
+            ColorControl();
         }
         #endregion
     }

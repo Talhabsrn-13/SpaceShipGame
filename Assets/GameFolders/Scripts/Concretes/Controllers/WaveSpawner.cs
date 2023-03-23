@@ -12,11 +12,26 @@ public class WaveSpawner : MonoBehaviour
     public enum SpawnState { SPAWNING, WAITING, COUNTING }
     EventData _eventData;
 
-    [SerializeField] Transform[] _paths;
+    [Header("Paths")]
+    [SerializeField] Transform[] _path1;
+    [SerializeField] Transform[] _path2;
+    [SerializeField] Transform[] _path3;
+    [SerializeField] Transform[] _path4;
+    [SerializeField] Transform[] _path5;
+    [SerializeField] Transform[] _path6;
+    [SerializeField] Transform[] _path7;
+    [SerializeField] Transform[] _path8;
+    [SerializeField] Transform[] _path9;
+    [SerializeField] Transform[] _path10;
+    Transform[][] _paths;
+    [SerializeField] Transform[] _tartgetTransforms;
+
     [System.Serializable]
+
     public class Wave
     {
         public string name;
+        public int pathType;
         public int enemyType;
         public int count;
         public float rate;
@@ -24,16 +39,12 @@ public class WaveSpawner : MonoBehaviour
 
     public Wave[] waves;
     private int nextWave = 0;
-    bool rightOrLeft;
+    static bool _leftOrRight;
 
-    [SerializeField] Transform[] spawnPoints;
-
-    Transform _sp;
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
 
     private float searchCountdown = 1f;
-
 
     private SpawnState state = SpawnState.COUNTING;
     private void Awake()
@@ -43,6 +54,20 @@ public class WaveSpawner : MonoBehaviour
     private void Start()
     {
         waveCountdown = timeBetweenWaves;
+
+        _paths = new Transform[][]
+         {
+          _path1,
+          _path2,
+          _path3,
+          _path4,
+          _path5,
+          _path6,
+          _path7,
+          _path8,
+          _path9,
+          _path10
+        };
     }
     private void Update()
     {
@@ -82,7 +107,7 @@ public class WaveSpawner : MonoBehaviour
         else
         {
             nextWave++;
-        } 
+        }
     }
     bool EnemyIsAlive()
     {
@@ -94,6 +119,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 return false;
             }
+
         }
         return true;
     }
@@ -104,7 +130,7 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < _wave.count; i++)
         {
-            SpawnEnemy(_wave.enemyType);
+            SpawnEnemy(_wave.enemyType, _wave.pathType, i);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
@@ -113,33 +139,58 @@ public class WaveSpawner : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(int _enemy)
+    void SpawnEnemy(int _enemyType, int _pathType, int _targetTransformIndex)
     {
-    
-        if (rightOrLeft)
+        if (_leftOrRight)
         {
-            _sp = spawnPoints[0];
-            rightOrLeft = false;
+
+            EnemyController newEnemy = EnemyManager.Instance.GetPool((EnemyType)_enemyType);
+            newEnemy.transform.parent = this.transform;
+            newEnemy.transform.position = transform.position;
+            newEnemy.transform.rotation = transform.rotation;
+            for (int i = 0; i < _path1.Length; i++)
+            {
+                newEnemy.GetComponent<PathController>()._points[i] = _paths[_pathType][i];
+            }
+            newEnemy.GetComponent<PathController>()._targetTransform = _tartgetTransforms[_targetTransformIndex];
+            newEnemy.gameObject.SetActive(true);
+            _leftOrRight = !_leftOrRight;
         }
         else
         {
-            _sp = spawnPoints[1];
-            rightOrLeft = true;
+            _pathType++;
+            EnemyController newEnemy = EnemyManager.Instance.GetPool((EnemyType)_enemyType);
+            newEnemy.transform.parent = this.transform;
+            newEnemy.transform.position = transform.position;
+            newEnemy.transform.rotation = transform.rotation;
+            for (int i = 0; i < _path1.Length; i++)
+            {
+                newEnemy.GetComponent<PathController>()._points[i] = _paths[_pathType][i];
+            }
+            newEnemy.GetComponent<PathController>()._targetTransform = _tartgetTransforms[_targetTransformIndex];
+            newEnemy.gameObject.SetActive(true);
+            _leftOrRight = !_leftOrRight;
         }
-       
-        EnemyController newEnemy = EnemyManager.Instance.GetPool((EnemyType)_enemy);
-        newEnemy.transform.parent = _sp.transform;
-        newEnemy.transform.position = _sp.transform.position;
-        newEnemy.transform.rotation = transform.rotation;
-        for (int i = 0; i < _paths.Length; i++)
-        {
-            newEnemy.GetComponent<PathController>()._points[i] = _paths[i];
-        }
-        
-        newEnemy.gameObject.SetActive(true);
-        
+
+        //for (int i = 0; i < 2; i++)
+        //{
+        //    EnemyController newEnemy = EnemyManager.Instance.GetPool((EnemyType)_enemyType);
+        //    newEnemy.transform.parent = this.transform;
+        //    newEnemy.transform.position = transform.position;
+        //    newEnemy.transform.rotation = transform.rotation;
+
+        //    for (int j = 0; j < _path1.Length; j++)
+        //    {
+        //        newEnemy.GetComponent<PathController>()._points[j] = _paths[_pathType][j];
+        //    }
+        //    newEnemy.GetComponent<PathController>()._targetTransform = _tartgetTransforms[_targetTransformIndex];
+        //    newEnemy.gameObject.SetActive(true);
+        //    _pathType++;
+        //}
+
     }
-   
+
+
     #region EventData
 
 
@@ -177,5 +228,4 @@ public class WaveSpawner : MonoBehaviour
         waveCountdown = timeBetweenWaves;
     }
     #endregion
-
 }

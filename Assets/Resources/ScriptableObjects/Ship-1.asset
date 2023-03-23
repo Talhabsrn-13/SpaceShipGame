@@ -16,7 +16,7 @@ MonoBehaviour:
   title: Anti-Virus
   damage: 20
   price: 20
-  level: 2
+  level: 1
   priceMultiplier: 2
   damageMultiplier: 10
   ownership: 1

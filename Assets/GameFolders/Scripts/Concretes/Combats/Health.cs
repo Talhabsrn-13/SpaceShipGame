@@ -25,5 +25,9 @@ namespace Space.Combats
                 GetComponent<EnemyController>().Death();
             }
         }
+        private void OnEnable()
+        {
+            _currentHealth = 100;
+        }
     }
 }

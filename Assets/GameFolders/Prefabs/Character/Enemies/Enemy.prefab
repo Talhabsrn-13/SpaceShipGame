@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5983506309316141562}
   - component: {fileID: 5983506309316141557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5983506309454717861}
   - component: {fileID: 2060268791}
   - component: {fileID: 5983506309454717857}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -199,6 +199,11 @@ MonoBehaviour:
   - {fileID: 5983506309454717862}
   - {fileID: 5983506309454717862}
   - {fileID: 5983506309454717862}
+  - {fileID: 5983506309454717862}
+  - {fileID: 5983506309454717862}
+  - {fileID: 5983506309454717862}
+  - {fileID: 5983506309454717862}
+  _targetTransform: {fileID: 5983506309454717862}
   moveSpeed: 5
 --- !u!114 &5983506309454717857
 MonoBehaviour:
