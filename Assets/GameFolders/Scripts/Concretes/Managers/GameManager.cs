@@ -82,6 +82,8 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     #endregion
 
     #region Level System
+    public int WaveIndex { get; set; }
+    public int MaxWaveCount { get; set; }
     public int EndlessLevel
     {
         get => PlayerPrefs.GetInt("EndlessLevel", 1);

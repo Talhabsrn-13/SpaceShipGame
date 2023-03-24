@@ -20,10 +20,11 @@ namespace Space.Controller
 
         public CollectableType CollectableType => _collectableType;
 
-
+        EventData _eventData;
         private void Awake()
         {
             _mover = new VerticalMover(this);
+            _eventData = Resources.Load("EventData") as EventData;
         }
         private void FixedUpdate()
         {
@@ -32,27 +33,31 @@ namespace Space.Controller
             if (_currentTime >_maxTime)
             {
                 _currentTime = 0;
-                KillyourSelf();
+                KillYourSelf();
             }
             _mover.FixedTick(false, _speed);
         }
        
-        public void KillyourSelf()
+        public void KillYourSelf()
         {
             Managers.CollectableManager.Instance.SetPool(this);
         }
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
+            _eventData.OnWin += KillYourSelf;
+            _eventData.OnLose += KillYourSelf;
         }
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            _eventData.OnWin -= KillYourSelf;
+            _eventData.OnLose -= KillYourSelf;
         }
 
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            KillyourSelf();
+            KillYourSelf();
         }
     }
 }

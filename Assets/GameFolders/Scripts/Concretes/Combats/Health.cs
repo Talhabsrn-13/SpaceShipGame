@@ -14,7 +14,7 @@ namespace Space.Combats
         public bool IsDead => _currentHealth <= 0;
         private void Awake()
         {
-            _currentHealth = _healthInfo;
+            _currentHealth = _healthInfo * GameManager.Instance.Level;
         }
         public void TakeDamage(int damage)
         {
@@ -27,7 +27,7 @@ namespace Space.Combats
         }
         private void OnEnable()
         {
-            _currentHealth = 100;
+            _currentHealth = _healthInfo * GameManager.Instance.Level;
         }
     }
 }

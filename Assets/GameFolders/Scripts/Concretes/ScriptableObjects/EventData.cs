@@ -20,4 +20,5 @@ public class EventData : ScriptableObject
     public Action OnWin;
     public Action OnLose;
     public Action OnIdle;
+    public Action OnWaveComplated;
 }

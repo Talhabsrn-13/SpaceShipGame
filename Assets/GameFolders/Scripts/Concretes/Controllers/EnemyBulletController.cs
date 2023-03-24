@@ -17,9 +17,11 @@ namespace Space.Controller
         public int Damage { get; set; }
         public object BulletManager { get; private set; }
 
+        EventData _eventData;
         private void Awake()
         {
             _mover = new VerticalMover(this);
+            _eventData = Resources.Load("EventData") as EventData;
         }
         private void Update()
         {
@@ -52,6 +54,18 @@ namespace Space.Controller
             {
                 collision.GetComponent<PlayerController>().TakeDamage();
             }
+        }
+        private void OnEnable()
+        {
+    
+            _eventData.OnWin += KillYourSelf;
+            _eventData.OnLose += KillYourSelf;
+        }
+        private void OnDisable()
+        {
+
+            _eventData.OnWin -= KillYourSelf;
+            _eventData.OnLose -= KillYourSelf;
         }
     }
 

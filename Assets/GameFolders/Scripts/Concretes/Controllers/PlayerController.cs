@@ -100,7 +100,7 @@ namespace Space.Controller
                     GameManager.Instance.Score += 500;
                     _eventData?.OnScore.Invoke();
                 }
-                other.GetComponent<CollectableController>().KillyourSelf();
+                other.GetComponent<CollectableController>().KillYourSelf();
             }
         }
         private void GunLevelUp()

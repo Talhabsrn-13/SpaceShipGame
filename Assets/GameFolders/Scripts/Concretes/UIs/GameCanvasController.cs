@@ -85,9 +85,13 @@ namespace Space.UIs
             _eventData.OnWin += OnWin;
             _eventData.OnIdle += OnIdle;
             _eventData.OnPlay += OnPlay;
+            _eventData.OnWaveComplated += OnWaveComplated;
         }
 
-
+        private void OnWaveComplated()
+        {
+            Debug.Log("CurrentWave = " + GameManager.Instance.WaveIndex + " MaxWave = "+ GameManager.Instance.MaxWaveCount);
+        }
 
         private void OnDisable()
         {
