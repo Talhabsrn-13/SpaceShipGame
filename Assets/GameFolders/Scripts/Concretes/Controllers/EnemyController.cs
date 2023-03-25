@@ -20,7 +20,7 @@ namespace Space.Controller
         bool _canIncrease = true;
         float _chance;
         int _collectableType;
-        EnemyType _enemyType;
+        [SerializeField] EnemyType _enemyType;
 
         public EnemyType EnemyType => _enemyType;
 
@@ -67,6 +67,7 @@ namespace Space.Controller
         }
         public void Death()
         {
+            SoundManager.Instance.Play("EnemyExplosion2");
             GameManager.Instance.Score += 50;
             _eventData?.OnScore.Invoke();
 

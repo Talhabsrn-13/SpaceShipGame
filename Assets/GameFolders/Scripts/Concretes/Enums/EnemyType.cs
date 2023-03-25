@@ -8,7 +8,9 @@ namespace Space.Enums
     {
         FirstEnemy,
         SecondEnemy,
-        ThirdEnemy
+        ThirdEnemy,
+        FourthEnemy,
+        Fifth
     }
 
 }

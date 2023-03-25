@@ -36,6 +36,10 @@ namespace Space.UIs
         [SerializeField] Button _winMainMenuButton;
         [SerializeField] Button _winGoToMapButton;
 
+        [Header("WavePanel")]
+        [SerializeField] GameObject _waveInfoPanel;
+        [SerializeField] TMP_Text _waveText;
+
         EventData _eventData;
         private void Awake()
         {
@@ -58,7 +62,7 @@ namespace Space.UIs
 
         private void PauseButton()
         {
-            _eventData?.OnIdle.Invoke(); 
+            _eventData?.OnIdle.Invoke();
         }
 
         public void ReturnMainMenu()
@@ -75,7 +79,10 @@ namespace Space.UIs
             //look
             Debug.Log("Go to Map Scene");
         }
-
+        public void ButtonSound()
+        {
+            SoundManager.Instance.Play("Click");
+        }
 
         private void OnEnable()
         {
@@ -90,7 +97,17 @@ namespace Space.UIs
 
         private void OnWaveComplated()
         {
-            Debug.Log("CurrentWave = " + GameManager.Instance.WaveIndex + " MaxWave = "+ GameManager.Instance.MaxWaveCount);
+            SoundManager.Instance.Play("NewWave");
+            int _waveindex = GameManager.Instance.WaveIndex + 1;
+            if (GameManager.Instance.MaxWaveCount > GameManager.Instance.WaveIndex)
+            {
+                _waveText.text = "Wave " + _waveindex + "/" + GameManager.Instance.MaxWaveCount;
+            }
+            else
+            {
+                _waveText.text = "BOSS COMING!";
+            }
+            StartCoroutine(WaitForWave());
         }
 
         private void OnDisable()
@@ -101,6 +118,7 @@ namespace Space.UIs
             _eventData.OnWin -= OnWin;
             _eventData.OnIdle -= OnIdle;
             _eventData.OnPlay -= OnPlay;
+            _eventData.OnWaveComplated -= OnWaveComplated;
         }
 
         private void OnPlay()
@@ -113,7 +131,7 @@ namespace Space.UIs
         private void OnIdle()
         {
             //pause Screen
-          
+
         }
         private void OnWin()
         {
@@ -144,10 +162,18 @@ namespace Space.UIs
                 {
                     _bulletLevelImages[i].color = new Color(1, 1, 1, 0.2f);
                 }
-              
+
             }
         }
+        IEnumerator WaitForWave()
+        {
+            _waveInfoPanel.SetActive(true);
+            yield return new WaitForSeconds(5f);
 
+            _waveInfoPanel.SetActive(false);
+         
+        }
     }
-
 }
+
+

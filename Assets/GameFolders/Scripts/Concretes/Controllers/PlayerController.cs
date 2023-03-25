@@ -79,6 +79,7 @@ namespace Space.Controller
             ICollectable collectableController = other.GetComponent<ICollectable>();
             if (collectableController != null && !_isDead)
             {
+                SoundManager.Instance.Play("Collect");
                 if (collectableController.CollectableType == CollectableType.GunPower)
                 {
                     GameManager.Instance.BulletLvl++;

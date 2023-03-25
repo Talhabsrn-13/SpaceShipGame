@@ -29,7 +29,7 @@ namespace Space.Managers
             if (!GameManager.Instance.Playability()) return;
 
             if (!_particle.isPlaying) _particle.Play();
-
+            SoundManager.Instance.Play("Laser");
             BulletController newBullet = BulletManager.Instance.GetPool((BulletType)_player.ShipType);
             newBullet.transform.parent = _spawnerTransform.transform;
             newBullet.transform.position = this.transform.position;
@@ -42,7 +42,7 @@ namespace Space.Managers
 
             CancelInvoke("Spawn");
 
-            InvokeRepeating("Spawn", 0.1f, _fireTime);
+            InvokeRepeating("Spawn", 0.4f, _fireTime);
 
         }
 
@@ -51,7 +51,7 @@ namespace Space.Managers
 
         private void OnEnable()
         {
-            InvokeRepeating("Spawn", 1, _fireTime);
+            InvokeRepeating("Spawn", 0.4f, _fireTime);
         }
         private void OnDisable()
         {

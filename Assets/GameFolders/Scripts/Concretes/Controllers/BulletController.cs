@@ -50,6 +50,7 @@ namespace Space.Controller
 
         private void FixedUpdate()
         {
+            if (!GameManager.Instance.Playability()) return;
             Vector2 pos = transform.position;
             pos += _velocity * Time.fixedDeltaTime;
 
@@ -65,7 +66,7 @@ namespace Space.Controller
         {
             if (collision.TryGetComponent<IHealth>(out IHealth health))
             {
-
+                SoundManager.Instance.Play("EnemyExplosion");
                 EffectController newEffect = EffectManager.Instance.GetPool((BulletType)_bulletType);
                 newEffect.transform.position = transform.position;
                 newEffect.gameObject.SetActive(true);

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dcc164b353f8b4f8c7d0d60c03b059, type: 3}
   m_Name: Ship-8
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: 51eeeab7dfeb3324d8d269eda5217cfe, type: 3}
+  Image: {fileID: 21300000, guid: 0ce1f3c391945b54cb3585dd1b76e8ec, type: 3}
   title: Cosmos
-  damage: 1
-  price: 320
-  level: 5
+  damage: 11
+  price: 640
+  level: 6
   priceMultiplier: 2
   damageMultiplier: 10
   ownership: 1

@@ -1,5 +1,6 @@
 using Space.Abstract.Controller;
 using Space.Movements;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Space.Controller
         [SerializeField] float _maxLifeTime;
 
         VerticalMover _mover;
-
+  
         float _currentLifeTime;
         public int Damage { get; set; }
         public object BulletManager { get; private set; }
@@ -25,6 +26,8 @@ namespace Space.Controller
         }
         private void Update()
         {
+            if (!GameManager.Instance.Playability()) return;
+        
             _currentLifeTime += Time.deltaTime;
             if (_currentLifeTime > _maxLifeTime)
             {
@@ -34,6 +37,7 @@ namespace Space.Controller
         }
         private void FixedUpdate()
         {
+            if (!GameManager.Instance.Playability()) return;
             _mover.FixedTick(true, _verticalMoveSpeed);
         }
 
@@ -59,11 +63,12 @@ namespace Space.Controller
         {
     
             _eventData.OnWin += KillYourSelf;
-            _eventData.OnLose += KillYourSelf;
+            _eventData.OnLose += KillYourSelf;   
         }
+
+
         private void OnDisable()
         {
-
             _eventData.OnWin -= KillYourSelf;
             _eventData.OnLose -= KillYourSelf;
         }

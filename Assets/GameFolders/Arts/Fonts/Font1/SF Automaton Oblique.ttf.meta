@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 8e627950693d4bc4498ac5057e301bee
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - SF Automaton
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 460da2bab6447564e9b35c538e720acf, type: 3}
+  - {fileID: 12800000, guid: e6a88c05d183388498edfccb37158efc, type: 3}
+  - {fileID: 12800000, guid: 50a1000d9cd45d04ab8b69c3ec9e390b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

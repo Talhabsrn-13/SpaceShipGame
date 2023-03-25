@@ -127,23 +127,28 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     private void OnPlay()
     {
         _gameState = GameState.Play;
-
+        SoundManager.Instance.Stop("Menu");
+        SoundManager.Instance.Play("Game");
     }
     private void OnWin()
     {
         _gameState = GameState.Win;
+        SoundManager.Instance.Play("Win");
         EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(5, 10));
         MoneyData += EarnedMoneyData;
     }
     private void OnLose()
     {
         _gameState = GameState.Lose;
+        SoundManager.Instance.Play("Lose");
         EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(10, 15));
         MoneyData += EarnedMoneyData;
     }
     private void OnIdle()
     {
         _gameState = GameState.Idle;
+        SoundManager.Instance.Stop("Game");
+        SoundManager.Instance.Play("Menu");
     }
 
     #endregion

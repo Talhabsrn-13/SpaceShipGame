@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff0567482559cd4d9e64b23fd1ddefa, type: 3}
+  m_Name: SoundData
+  m_EditorClassIdentifier: 
+  soundClips:
+  - _name: Menu
+    _clip: {fileID: 8300000, guid: ac56e4166890f0b44929282ee7d50293, type: 3}
+    _volume: 0.277
+  - _name: Game
+    _clip: {fileID: 8300000, guid: 1a1d106f55a3b824f96f1f8f05c2dedd, type: 3}
+    _volume: 0.113
+  - _name: NewWave
+    _clip: {fileID: 8300000, guid: df2246b7afd58744faa7982ea53da0c4, type: 3}
+    _volume: 1
+  - _name: EnemyExplosion
+    _clip: {fileID: 8300000, guid: 803358599a25e90418024b92ab9a1a66, type: 3}
+    _volume: 0.017
+  - _name: EnemyExplosion2
+    _clip: {fileID: 8300000, guid: 3be4ddf5d9fa8bc42a652bd30ca0cdac, type: 3}
+    _volume: 0.035
+  - _name: Click
+    _clip: {fileID: 8300000, guid: 6b2d18d01d2ee2f4abfff451438e435f, type: 3}
+    _volume: 0.358
+  - _name: Laser
+    _clip: {fileID: 8300000, guid: b0be2f5e9c5a3394397e8c7d069f4807, type: 3}
+    _volume: 0.01
+  - _name: Collect
+    _clip: {fileID: 8300000, guid: b61f4bd531bfa514a8a207875cc998e5, type: 3}
+    _volume: 0.758
+  - _name: Win
+    _clip: {fileID: 8300000, guid: 3504ed06bf025f5429da3d1693a92682, type: 3}
+    _volume: 0.758
+  - _name: Lose
+    _clip: {fileID: 8300000, guid: f07d4845faf948f44840afb328d2697b, type: 3}
+    _volume: 0.758

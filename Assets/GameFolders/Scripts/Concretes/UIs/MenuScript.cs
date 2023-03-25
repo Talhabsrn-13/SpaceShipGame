@@ -47,6 +47,7 @@ namespace Space.UIs
 
         private void Start()
         {
+            SoundManager.Instance.Play("Menu");
             SelectButton(GameManager.Instance.LastShipIndex);
             ColorControl();
         }
@@ -118,6 +119,10 @@ namespace Space.UIs
         }
 
         #region Buttons
+        public void ButtonSound()
+        {
+            SoundManager.Instance.Play("Click");
+        }
         private void StartButton()
         {
             GameManager.Instance.NextLevel(1);

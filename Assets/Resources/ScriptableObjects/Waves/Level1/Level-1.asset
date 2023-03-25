@@ -17,11 +17,24 @@ MonoBehaviour:
     enemyType: 0
     count: 30
     rate: 5
+    targetType: 4
   - pathType: 2
     enemyType: 1
-    count: 20
+    count: 64
     rate: 10
+    targetType: 1
   - pathType: 0
-    enemyType: 0
-    count: 60
+    enemyType: 2
+    count: 55
     rate: 15
+    targetType: 2
+  - pathType: 0
+    enemyType: 3
+    count: 68
+    rate: 15
+    targetType: 3
+  - pathType: 0
+    enemyType: 4
+    count: 50
+    rate: 15
+    targetType: 0

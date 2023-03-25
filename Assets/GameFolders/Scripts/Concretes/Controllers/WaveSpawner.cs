@@ -26,8 +26,13 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] Transform[] _path10;
     Transform[][] _paths;
     [Header("TargetTransforms")]
-    [SerializeField] Transform[] _tartgetTransforms;
+    [SerializeField] Transform[] _targetTransform1;
+    [SerializeField] Transform[] _targetTransform2;
+    [SerializeField] Transform[] _targetTransform3;
+    [SerializeField] Transform[] _targetTransform4;
+    [SerializeField] Transform[] _targetTransform5;
 
+    Transform[][] _targets;
     [SerializeField] WaveSO[] _waveSO;
     [System.Serializable]
 
@@ -37,6 +42,7 @@ public class WaveSpawner : MonoBehaviour
         public int enemyType;
         public int count;
         public float rate;
+        public int targetType;
     }
 
     private Wave[] waves;
@@ -57,10 +63,18 @@ public class WaveSpawner : MonoBehaviour
     {
         waveCountdown = timeBetweenWaves;
        
-        waves = _waveSO[GameManager.Instance.Level]._waves;
+        waves = _waveSO[GameManager.Instance.Level-1]._waves;
        
         WaveInformation();
+        _targets = new Transform[][]
+        {
+            _targetTransform1,
+            _targetTransform2,
+            _targetTransform3,
+            _targetTransform4,
+            _targetTransform5
 
+        };
         _paths = new Transform[][]
          {
           _path1,
@@ -137,7 +151,7 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < _wave.count; i++)
         {
-            SpawnEnemy(_wave.enemyType, _wave.pathType, i % _tartgetTransforms.Length);
+            SpawnEnemy(_wave.enemyType, _wave.pathType, _wave.targetType, i % _targets[_wave.targetType].Length);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
@@ -146,7 +160,7 @@ public class WaveSpawner : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(int _enemyType, int _pathType, int _targetTransformIndex)
+    void SpawnEnemy(int _enemyType, int _pathType,int _targetType, int _targetTransformIndex)
     {
         if (_leftOrRight)
         {
@@ -159,7 +173,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 newEnemy.GetComponent<PathController>()._points[i] = _paths[_pathType][i];
             }
-            newEnemy.GetComponent<PathController>()._targetTransform = _tartgetTransforms[_targetTransformIndex];
+            newEnemy.GetComponent<PathController>()._targetTransform =  _targets[_targetType][_targetTransformIndex];
             newEnemy.gameObject.SetActive(true);
             _leftOrRight = !_leftOrRight;
         }
@@ -174,27 +188,10 @@ public class WaveSpawner : MonoBehaviour
             {
                 newEnemy.GetComponent<PathController>()._points[i] = _paths[_pathType+1][i];
             }
-            newEnemy.GetComponent<PathController>()._targetTransform = _tartgetTransforms[_targetTransformIndex];
+            newEnemy.GetComponent<PathController>()._targetTransform = _targets[_targetType][_targetTransformIndex];
             newEnemy.gameObject.SetActive(true);
             _leftOrRight = !_leftOrRight;
         }
-      
-        //for (int i = 0; i < 2; i++)
-        //{
-        //    EnemyController newEnemy = EnemyManager.Instance.GetPool((EnemyType)_enemyType);
-        //    newEnemy.transform.parent = this.transform;
-        //    newEnemy.transform.position = transform.position;
-        //    newEnemy.transform.rotation = transform.rotation;
-
-        //    for (int j = 0; j < _path1.Length; j++)
-        //    {
-        //        newEnemy.GetComponent<PathController>()._points[j] = _paths[_pathType][j];
-        //    }
-        //    newEnemy.GetComponent<PathController>()._targetTransform = _tartgetTransforms[_targetTransformIndex];
-        //    newEnemy.gameObject.SetActive(true);
-        //    _pathType++;
-        //}
-
     }
     private void WaveInformation()
     {

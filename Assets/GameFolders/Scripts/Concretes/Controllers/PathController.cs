@@ -21,6 +21,7 @@ public class PathController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GameManager.Instance.Playability()) return;
 
         if (_isComplate)
         {
@@ -34,6 +35,7 @@ public class PathController : MonoBehaviour
     }
     private void Move()
     {
+      
         if (_pointsIndex <= _points.Length - 1)
         {
             transform.position = Vector2.MoveTowards(transform.position, _points[_pointsIndex].transform.position, moveSpeed * Time.deltaTime);

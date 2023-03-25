@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _min: 13.47
   _max: 30
+  _enemyType: 0
   _bullet: {fileID: -1509413160444785118, guid: 6fa8af4dc88a7f845bcb42190070a07f, type: 3}
 --- !u!114 &2060268791
 MonoBehaviour:
