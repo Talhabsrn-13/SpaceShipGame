@@ -6,8 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : SingletonMonoBehaviourObject<GameManager>
 {
-    [SerializeField] int levelCount;
-    [SerializeField] int randomLevelLowerLimit;
+
 
     EventData _eventData;
     GameState _gameState = GameState.Idle;
@@ -84,25 +83,16 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     #region Level System
     public int WaveIndex { get; set; }
     public int MaxWaveCount { get; set; }
-    public int EndlessLevel
+
+    public int LastLevel
     {
-        get => PlayerPrefs.GetInt("EndlessLevel", 1);
-        set => PlayerPrefs.SetInt("EndlessLevel", value);
+        get => PlayerPrefs.GetInt("LastLevel", 1);
+        set => PlayerPrefs.SetInt("LastLevel", value);
     }
     public int Level
     {
-        get
-        {
-            if (PlayerPrefs.GetInt("Level") > levelCount)
-            {
-                return Random.Range(randomLevelLowerLimit, levelCount);
-            }
-            else
-            {
-                return PlayerPrefs.GetInt("Level", 1);
-            }
-        }
-        set => PlayerPrefs.SetInt("Level", EndlessLevel);
+        get => PlayerPrefs.GetInt("Level",1);
+        set => PlayerPrefs.SetInt("Level", value);
     }
     #endregion
 
@@ -133,20 +123,17 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     private void OnWin()
     {
         _gameState = GameState.Win;
-        SoundManager.Instance.Play("Win");
-        EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(5, 10));
-        MoneyData += EarnedMoneyData;
+        WinLevel();
     }
     private void OnLose()
     {
         _gameState = GameState.Lose;
-        SoundManager.Instance.Play("Lose");
-        EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(10, 15));
-        MoneyData += EarnedMoneyData;
+        LoseLevel();
     }
     private void OnIdle()
     {
         _gameState = GameState.Idle;
+
         SoundManager.Instance.Stop("Game");
         SoundManager.Instance.Play("Menu");
     }
@@ -161,21 +148,31 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         BulletLvl = 1;
         Score = 0;
     }
+    public void WinLevel()
+    {
+        SoundManager.Instance.Stop("Game");
+        SoundManager.Instance.Play("Menu");
+        SoundManager.Instance.Play("Win");
+        
+        EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(5, 10));
+        MoneyData += EarnedMoneyData;
+        if (LastLevel == Level)
+        {
+            LastLevel++;
+        }
+    }
+    public void LoseLevel()
+    {
+        SoundManager.Instance.Stop("Game");
+        SoundManager.Instance.Play("Menu");
+        SoundManager.Instance.Play("Lose");
+        EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(10, 15));
+        MoneyData += EarnedMoneyData;
+    }
     public void NextLevel(int index)
     {
         SceneManager.LoadScene(index);
         _bulletLvl = 1;
-        //InGameGold = StartCountData;
-        //_gameState = GameState.Idle;
-        //LevelLastGold = 0;
-        //EndlessLevel++;
-        //Level++;
-        //SceneManager.LoadScene(Level);
-        ////StartCoroutine(StartAd());
-    }
-    public void LoseLevel()
-    {
-     
     }
     public void StopGame()
     {

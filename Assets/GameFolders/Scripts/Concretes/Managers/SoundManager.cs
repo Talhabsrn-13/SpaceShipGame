@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SoundManager : SingletonMonoBehaviourObject<SoundManager>
 {
-    [SerializeField] int maxMultipleSound = 5;
+    [SerializeField] int maxMultipleSound = 30;
 
     private SoundData _soundData;
 

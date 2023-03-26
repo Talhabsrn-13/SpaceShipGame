@@ -140,7 +140,7 @@ namespace Space.UIs
         }
         private void MapButton()
         {
-            throw new NotImplementedException();
+            GameManager.Instance.NextLevel(2);
         }
 
         private void ExitButton()
@@ -150,7 +150,6 @@ namespace Space.UIs
         }
         #endregion
         #region EventData
-        // hepsini dinlemesine gerek yok
 
         private void OnEnable()
         {

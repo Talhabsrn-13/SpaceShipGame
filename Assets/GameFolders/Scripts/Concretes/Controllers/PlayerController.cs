@@ -48,7 +48,8 @@ namespace Space.Controller
         private void Update()
         {
             if (_isDead || !GameManager.Instance.Playability()) return;
-            if (Input.GetMouseButton(0) && Camera.main.ScreenToWorldPoint(Input.mousePosition).y < 4)
+
+            if (Input.GetMouseButton(0) && Camera.main.ScreenToWorldPoint(Input.mousePosition).y < 3.75f)
             {
 
                 _destionation = Camera.main.ScreenToWorldPoint(Input.mousePosition);

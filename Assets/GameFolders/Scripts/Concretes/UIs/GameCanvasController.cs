@@ -67,7 +67,7 @@ namespace Space.UIs
 
         public void ReturnMainMenu()
         {
-            SceneManager.LoadScene(0);
+            GameManager.Instance.NextLevel(0);
         }
         public void RepeatLevel()
         {
@@ -76,8 +76,7 @@ namespace Space.UIs
         }
         public void GoToMapScene()
         {
-            //look
-            Debug.Log("Go to Map Scene");
+            GameManager.Instance.NextLevel(2);
         }
         public void ButtonSound()
         {

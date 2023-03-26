@@ -43,3 +43,6 @@ MonoBehaviour:
   - _name: Lose
     _clip: {fileID: 8300000, guid: f07d4845faf948f44840afb328d2697b, type: 3}
     _volume: 0.758
+  - _name: LevelNoHave
+    _clip: {fileID: 8300000, guid: fc669e7413c91594bb7519daa37e1fab, type: 3}
+    _volume: 0.28
