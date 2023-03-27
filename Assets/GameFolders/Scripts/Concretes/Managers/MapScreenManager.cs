@@ -10,10 +10,11 @@ namespace Space.Managers
         EventData _eventData;
 
         [SerializeField] Image[] _planets;
-
+        [SerializeField] Button _returnMenu;
         private void Awake()
         {
             _eventData = Resources.Load("EventData") as EventData;
+            _returnMenu.onClick.AddListener(ReturnMenu);
         }
         private void Start()
         {
@@ -24,7 +25,10 @@ namespace Space.Managers
         {
             for (int i = 0; i < GameManager.Instance.LastLevel; i++)
             {
-                _planets[i].color = Color.white;
+                if (_planets[i] != null)
+                {
+                    _planets[i].color = Color.white;
+                }
             }
 
         }

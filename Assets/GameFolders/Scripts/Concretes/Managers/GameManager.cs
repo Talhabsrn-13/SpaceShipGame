@@ -39,7 +39,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     }
     private void Start()
     {
-        //   StartCoroutine(WakeUp());
+        LoadAudio();
     }
 
 
@@ -69,7 +69,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     #region MoneyData
     public int MoneyData
     {
-        get => PlayerPrefs.GetInt("MoneyData", 10000);
+        get => PlayerPrefs.GetInt("MoneyData", 0);
         set => PlayerPrefs.SetInt("MoneyData", value);
     }
     private int _earnedMoney;
@@ -140,7 +140,16 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
 
     #endregion
 
-
+    #region Audio
+    public void SaveAudio()
+    {
+        PlayerPrefs.SetFloat("audioVolume", AudioListener.volume);
+    }
+    public void LoadAudio()
+    {
+        AudioListener.volume = PlayerPrefs.GetFloat("audioVolume",0.5f);
+    }
+    #endregion
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -158,7 +167,10 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         MoneyData += EarnedMoneyData;
         if (LastLevel == Level)
         {
-            LastLevel++;
+            if (LastLevel < 15)
+            {
+                LastLevel++;
+            }
         }
     }
     public void LoseLevel()

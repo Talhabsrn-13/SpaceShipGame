@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Image: {fileID: 21300000, guid: 4c990118aaab113479aca9264d20593e, type: 3}
   title: ISS-Carmelo
-  damage: 1
-  price: 2560
-  level: 8
-  priceMultiplier: 2
-  damageMultiplier: 10
+  damage: 38
+  price: 600
+  level: 0
+  priceMultiplier: 3
+  damageMultiplier: 8
   ownership: 0

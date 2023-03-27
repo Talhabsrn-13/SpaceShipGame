@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundClips:
   - _name: Menu
-    _clip: {fileID: 8300000, guid: ac56e4166890f0b44929282ee7d50293, type: 3}
+    _clip: {fileID: 8300000, guid: bd7fad2b4d208d446814e2d3f02f5288, type: 3}
     _volume: 0.277
   - _name: Game
-    _clip: {fileID: 8300000, guid: 1a1d106f55a3b824f96f1f8f05c2dedd, type: 3}
+    _clip: {fileID: 8300000, guid: 76a8e28c10384134592db47f81a0657d, type: 3}
     _volume: 0.113
   - _name: NewWave
     _clip: {fileID: 8300000, guid: df2246b7afd58744faa7982ea53da0c4, type: 3}

@@ -36,12 +36,13 @@ namespace Space.Controller
 
         private void OnEnable()
         {
-            _chance = Random.Range(0, 2f);
+            _chance = Random.Range(0, 3f);
             GetRandomSpawnTime();
 
         }
         private void Update()
         {
+            if (!GameManager.Instance.Playability()) return;
             _currentTime += Time.deltaTime;
             if (_currentTime > _maxSpawnTime)
             {
@@ -76,15 +77,15 @@ namespace Space.Controller
             newEffect.gameObject.SetActive(true);
 
   
-            if (_chance < 1)
+            if (_chance < 0.2f)
             {
-                if (_chance <= 0.5f)
+                if (_chance <= 0.1f)
                 {
-                    _collectableType = 1; 
+                    _collectableType = 0; 
                 }
                 else
                 {
-                    _collectableType = 0;
+                    _collectableType = 1;
                 }
                 CollectableController newItem = CollectableManager.Instance.GetPool((CollectableType)_collectableType);
                 newItem.transform.parent = CollectableManager.Instance.transform;

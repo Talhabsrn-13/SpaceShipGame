@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Image: {fileID: 21300000, guid: 21ab157902187534ea88e145052d508b, type: 3}
   title: Full-Kudos
-  damage: 140
-  price: 80
-  level: 3
+  damage: 50
+  price: 5000
+  level: 0
   priceMultiplier: 2
-  damageMultiplier: 10
+  damageMultiplier: 12
   ownership: 0

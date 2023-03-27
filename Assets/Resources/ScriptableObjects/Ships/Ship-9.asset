@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Image: {fileID: 21300000, guid: ca3aa82633ca96f49be173315fda4c1d, type: 3}
   title: Nova
-  damage: 80
-  price: 640
-  level: 16
+  damage: 150
+  price: 10000
+  level: 0
   priceMultiplier: 2
-  damageMultiplier: 10
+  damageMultiplier: 25
   ownership: 0

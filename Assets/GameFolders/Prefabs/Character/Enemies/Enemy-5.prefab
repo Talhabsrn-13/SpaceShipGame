@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 5983506309454717857, guid: 298eadcc552cade4ebe9901f8b7bcff4, type: 3}
+      propertyPath: _healthInfo
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 5983506309454717861, guid: 298eadcc552cade4ebe9901f8b7bcff4, type: 3}
       propertyPath: _enemyType
       value: 4

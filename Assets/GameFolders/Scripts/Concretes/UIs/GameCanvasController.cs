@@ -19,6 +19,7 @@ namespace Space.UIs
         [SerializeField] Button _continueButton;
         [SerializeField] Button _pauseButton;
         [SerializeField] Button _pauseGoToMenuButton;
+        [SerializeField] Button _pauseGoToMapButton;
 
         [Header("LosePanel")]
         [SerializeField] GameObject _losePanel;
@@ -52,12 +53,16 @@ namespace Space.UIs
             _pauseButton.onClick.AddListener(PauseButton);
             _continueButton.onClick.AddListener(ContinueButton);
             _pauseGoToMenuButton.onClick.AddListener(ReturnMainMenu);
+            _pauseGoToMapButton.onClick.AddListener(GoToMapScene);
+        }
+        private void Start()
+        {
+            GameManager.Instance.LoadAudio();
         }
 
         private void ContinueButton()
         {
             _eventData?.OnPlay.Invoke();
-            Debug.Log(GameManager.Instance.GameState);
         }
 
         private void PauseButton()
@@ -82,7 +87,8 @@ namespace Space.UIs
         {
             SoundManager.Instance.Play("Click");
         }
-
+     
+       
         private void OnEnable()
         {
             _eventData.OnScore += SetScore;
@@ -108,7 +114,10 @@ namespace Space.UIs
             }
             StartCoroutine(WaitForWave());
         }
-
+        public void NextLevel()
+        {
+            _eventData?.OnWin.Invoke();
+        }
         private void OnDisable()
         {
             _eventData.OnScore -= SetScore;

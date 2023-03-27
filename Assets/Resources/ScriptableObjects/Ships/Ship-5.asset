@@ -15,8 +15,8 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 824dfc4db3836744c8ba555362834b44, type: 3}
   title: Loki
   damage: 60
-  price: 80
-  level: 3
+  price: 5500
+  level: 0
   priceMultiplier: 2
-  damageMultiplier: 10
+  damageMultiplier: 14
   ownership: 0

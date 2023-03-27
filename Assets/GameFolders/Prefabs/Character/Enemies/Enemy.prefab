@@ -206,6 +206,7 @@ MonoBehaviour:
   - {fileID: 5983506309454717862}
   _targetTransform: {fileID: 5983506309454717862}
   moveSpeed: 5
+  _onTargetSpeed: 1
 --- !u!114 &5983506309454717857
 MonoBehaviour:
   m_ObjectHideFlags: 0

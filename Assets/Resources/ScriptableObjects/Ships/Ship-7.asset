@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Image: {fileID: 21300000, guid: f5220c0037087e04ca9bbe3241bd375e, type: 3}
   title: G-Gopher
-  damage: 50
-  price: 40
-  level: 2
+  damage: 100
+  price: 7000
+  level: 0
   priceMultiplier: 2
-  damageMultiplier: 10
+  damageMultiplier: 18
   ownership: 0
