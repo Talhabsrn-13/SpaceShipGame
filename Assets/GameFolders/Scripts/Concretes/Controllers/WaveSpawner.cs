@@ -151,6 +151,7 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < _wave.count; i++)
         {
+            if (!GameManager.Instance.Playability()) continue;
             SpawnEnemy(_wave.enemyType, _wave.pathType, _wave.targetType, i % _targets[_wave.targetType].Length);
             yield return new WaitForSeconds(1f / _wave.rate);
         }

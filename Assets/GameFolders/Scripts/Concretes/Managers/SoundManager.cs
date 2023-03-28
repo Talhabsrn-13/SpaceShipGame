@@ -17,7 +17,7 @@ public class SoundManager : SingletonMonoBehaviourObject<SoundManager>
     private void Awake()
     {
         _soundData = Resources.Load("SoundData") as SoundData;
-        SingletonThisObject(this, true);
+        SingletonThisObject(this, true,false);
         Initiate();
     }
 

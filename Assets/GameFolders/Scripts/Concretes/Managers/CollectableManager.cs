@@ -14,7 +14,7 @@ namespace Space.Managers
         
         private void Awake()
         {
-            SingletonThisObject(this,false);
+            SingletonThisObject(this,false,false);
         }
         private void Start()
         {

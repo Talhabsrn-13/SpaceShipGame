@@ -38,8 +38,19 @@ namespace Space.Controller
         {
             _chance = Random.Range(0, 3f);
             GetRandomSpawnTime();
+            _eventData.OnLose += OnLose;
+        }
+        private void OnDisable()
+        {
+            _eventData.OnLose -= OnLose;
 
         }
+        private void OnLose()
+        {
+            _currentTime = 0f;
+            EnemyManager.Instance.SetPool(this);
+        }
+
         private void Update()
         {
             if (!GameManager.Instance.Playability()) return;
@@ -59,7 +70,6 @@ namespace Space.Controller
 
             _currentTime = 0;
             GetRandomSpawnTime();
-    
         }
 
         private void GetRandomSpawnTime()
@@ -94,5 +104,6 @@ namespace Space.Controller
             }
             EnemyManager.Instance.SetPool(this);
         }
+        
     }
 }

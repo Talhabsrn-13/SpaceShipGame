@@ -9,13 +9,14 @@ using Space.Abstract.Entity;
 
 public class AdManager : SingletonMonoBehaviourObject<AdManager>
 {
-    private string bannerID = "ca-app-pub-4438058583807473/7361709649";
-    private string intersititialID = "ca-app-pub-4438058583807473/3422464632";
-    private string rewardedID = "ca-app-pub-4438058583807473/9959952826";
-    private string rewardedInterstitialAd = "ca-app-pub-4438058583807473/7004021961";
+    private string bannerID = "ca-app-pub-6637454041741627/6934388448";
+    private string intersititialID = "ca-app-pub-6637454041741627/2835361338";
+    private string rewardedID = "ca-app-pub-6637454041741627/8270137955";
+    private string rewardedInterstitialAd = "ca-app-pub-6637454041741627/8223419389";
 
     private BannerView _bannerAd;
     private InterstitialAd _interstitialAd;
+    public bool _interstitialAdLoaded;
     private RewardedAd _rewardedAd;
     private RewardedInterstitialAd _rewardedInterstitialAd;
 
@@ -26,7 +27,7 @@ public class AdManager : SingletonMonoBehaviourObject<AdManager>
     EventData _eventData;
     private void Awake()
     {
-        SingletonThisObject(this, true);
+        SingletonThisObject(this,true,true);
         _eventData = Resources.Load("EventData") as EventData;
     }
 
@@ -57,6 +58,7 @@ public class AdManager : SingletonMonoBehaviourObject<AdManager>
 
     private void RequestInterstitial()
     {
+        _interstitialAdLoaded = false;
         // Initialize an InterstitialAd.
         _interstitialAd = new InterstitialAd(intersititialID);
 
@@ -77,28 +79,24 @@ public class AdManager : SingletonMonoBehaviourObject<AdManager>
     }
     public void HandleOnAdLoaded(object sender, EventArgs args)
     {
-        MonoBehaviour.print("HandleAdLoaded event received");
+        _interstitialAdLoaded = true;
     }
 
     public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-
+        RequestInterstitial();
     }
 
     public void HandleOnAdOpening(object sender, EventArgs args)
     {
-        MonoBehaviour.print("HandleAdOpening event received");
-        
+        _interstitialAdLoaded = false;
+
     }
 
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
         UnityMainThreadDispatcher.Instance().Enqueue(() =>
         {
-            //if (GameManager.Instance.GameState == GameState.Finish)
-            //{
-            //    GameManager.Instance.NextLevel();
-            //}
             RequestInterstitial();
         });
     }

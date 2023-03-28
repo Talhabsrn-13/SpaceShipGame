@@ -1,5 +1,5 @@
 using Space.Abstract.Entity;
-using Space.UIs;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletonMonoBehaviourObject<GameManager>
 {
 
-
+  
     EventData _eventData;
     GameState _gameState = GameState.Idle;
 
@@ -34,11 +34,12 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     }
     private void Awake()
     {
-        SingletonThisObject(this, true);
+        SingletonThisObject(this, true, false);
         _eventData = Resources.Load("EventData") as EventData;
     }
     private void Start()
     {
+        Application.targetFrameRate = 60;
         LoadAudio();
     }
 
@@ -91,7 +92,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     }
     public int Level
     {
-        get => PlayerPrefs.GetInt("Level",1);
+        get => PlayerPrefs.GetInt("Level", 1);
         set => PlayerPrefs.SetInt("Level", value);
     }
     #endregion
@@ -117,23 +118,26 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     private void OnPlay()
     {
         _gameState = GameState.Play;
+
         SoundManager.Instance.Stop("Menu");
         SoundManager.Instance.Play("Game");
     }
     private void OnWin()
     {
         _gameState = GameState.Win;
+   
         WinLevel();
     }
     private void OnLose()
     {
         _gameState = GameState.Lose;
+     
         LoseLevel();
     }
     private void OnIdle()
     {
         _gameState = GameState.Idle;
-
+ 
         SoundManager.Instance.Stop("Game");
         SoundManager.Instance.Play("Menu");
     }
@@ -147,7 +151,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     }
     public void LoadAudio()
     {
-        AudioListener.volume = PlayerPrefs.GetFloat("audioVolume",0.5f);
+        AudioListener.volume = PlayerPrefs.GetFloat("audioVolume", 0.5f);
     }
     #endregion
     public void RestartGame()
@@ -162,7 +166,7 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         SoundManager.Instance.Stop("Game");
         SoundManager.Instance.Play("Menu");
         SoundManager.Instance.Play("Win");
-        
+
         EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(5, 10));
         MoneyData += EarnedMoneyData;
         if (LastLevel == Level)
@@ -180,16 +184,33 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         SoundManager.Instance.Play("Lose");
         EarnedMoneyData = Mathf.RoundToInt(Score / Random.Range(10, 15));
         MoneyData += EarnedMoneyData;
+
+        if (AdManager.Instance._interstitialAdLoaded)
+        {
+            AdManager.Instance.InterstitialAd.Show();
+        }
+
     }
     public void NextLevel(int index)
     {
-        SceneManager.LoadScene(index);
+       
+        StartCoroutine(LoadAsynchronously(index));
+  
         _bulletLvl = 1;
     }
     public void StopGame()
     {
         Time.timeScale = 0f;
     }
+    IEnumerator LoadAsynchronously(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
 
+       
+        while (!operation.isDone)
+        {     
+             yield return null;
+        }
+    }
 
 }

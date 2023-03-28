@@ -14,7 +14,7 @@ public class EffectManager : SingletonMonoBehaviourObject<EffectManager>
     Dictionary<BulletType, Queue<EffectController>> _effects = new Dictionary<BulletType, Queue<EffectController>>();
     private void Awake()
     {
-        SingletonThisObject(this,false);
+        SingletonThisObject(this,false,false);
     }
 
     private void Start()

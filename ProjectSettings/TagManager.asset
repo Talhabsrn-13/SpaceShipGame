@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EffectParent
   - Enemy
+  - Load
   layers:
   - Default
   - TransparentFX

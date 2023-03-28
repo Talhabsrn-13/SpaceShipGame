@@ -11,18 +11,27 @@ namespace Space.Abstract.Entity
 
         public bool isActiveInGameScene;
         private bool subscribed = true;
-
-        protected void SingletonThisObject(T entity, bool isEveryScene)
+        protected void SingletonThisObject(T entity, bool isEveryScene,bool isAdManager)
         {
             isActiveInGameScene = isEveryScene;
             if (Instance == null)
             {
                 Instance = entity;
-                DontDestroyOnLoad(this.gameObject);
+                if (!isAdManager)
+                {
+                    DontDestroyOnLoad(this.gameObject);
+                }
             }
             else
             {
-                Destroy(this.gameObject);
+                if (isAdManager)
+                {
+                    Instance = entity;
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
 
@@ -45,7 +54,7 @@ namespace Space.Abstract.Entity
             {
                 gameObject.SetActive(true);
             }
-            else if (scene.buildIndex != 0)
+            else if (scene.buildIndex != 0 && scene.buildIndex != 2)
             {
                 gameObject.SetActive(true);
             }
