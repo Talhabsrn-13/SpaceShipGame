@@ -113,7 +113,6 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         _eventData.OnWin -= OnWin;
         _eventData.OnLose -= OnLose;
         _eventData.OnIdle -= OnIdle;
-
     }
     private void OnPlay()
     {
@@ -156,7 +155,6 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
     #endregion
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         _eventData?.OnPlay.Invoke();
         BulletLvl = 1;
         Score = 0;
@@ -191,26 +189,6 @@ public class GameManager : SingletonMonoBehaviourObject<GameManager>
         }
 
     }
-    public void NextLevel(int index)
-    {
-       
-        StartCoroutine(LoadAsynchronously(index));
-  
-        _bulletLvl = 1;
-    }
-    public void StopGame()
-    {
-        Time.timeScale = 0f;
-    }
-    IEnumerator LoadAsynchronously(int sceneIndex)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-
-       
-        while (!operation.isDone)
-        {     
-             yield return null;
-        }
-    }
+   
 
 }

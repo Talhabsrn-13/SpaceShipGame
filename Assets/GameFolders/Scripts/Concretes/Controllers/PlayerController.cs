@@ -119,9 +119,9 @@ namespace Space.Controller
             {
                 _gunPrefabs[0].SetActive(true);
             }
-            for (int i = 0; i < GameManager.Instance.BulletLvl - 1; i++)
+            for (int i = 1; i < GameManager.Instance.BulletLvl; i++)
             {
-                if (GameManager.Instance.BulletLvl % 2 == 0 && i == 0) continue;
+                
 
 
                 _gunPrefabs[i].GetComponent<PlayerBulletSpawnManager>().ResetInvoke(false);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Space.UIs;
 
 namespace Space.Managers
 {
@@ -11,6 +12,7 @@ namespace Space.Managers
 
         [SerializeField] Image[] _planets;
         [SerializeField] Button _returnMenu;
+        [SerializeField] Loader _loader;
         private void Awake()
         {
             _eventData = Resources.Load("EventData") as EventData;
@@ -52,7 +54,7 @@ namespace Space.Managers
             if (LevelControl(index))
             {
                 GameManager.Instance.Level = index;
-                GameManager.Instance.NextLevel(1);
+                _loader.LoadScene(1);
                 _eventData?.OnPlay.Invoke();
             }
             else
@@ -62,7 +64,7 @@ namespace Space.Managers
         }
         public void ReturnMenu()
         {
-            GameManager.Instance.NextLevel(0);
+            _loader.LoadScene(0);
         }
         private void OnEnable()
         {

@@ -14,7 +14,7 @@ namespace Space.UIs
     {
         [SerializeField] Image[] _bulletLevelImages;
         [SerializeField] TMP_Text _currentScore;
-
+        [SerializeField] Loader _loader;
         [Header("Pause")]
         [SerializeField] Button _continueButton;
         [SerializeField] Button _pauseButton;
@@ -72,16 +72,18 @@ namespace Space.UIs
 
         public void ReturnMainMenu()
         {
-            GameManager.Instance.NextLevel(0);
+            _loader.LoadScene(0);
         }
         public void RepeatLevel()
         {
+    
             GameManager.Instance.RestartGame();
             _losePanel.SetActive(false);
+            _loader.LoadScene(1);
         }
         public void GoToMapScene()
         {
-            GameManager.Instance.NextLevel(2);
+            _loader.LoadScene(2);
         }
         public void ButtonSound()
         {

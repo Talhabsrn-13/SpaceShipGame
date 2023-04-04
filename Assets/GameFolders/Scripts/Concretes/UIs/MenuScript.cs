@@ -11,6 +11,7 @@ namespace Space.UIs
 {
     public class MenuScript : MonoBehaviour
     {
+        [SerializeField] Loader _loader;
         [Header("Buttons")]
         [SerializeField] Button _exitButton;
         [SerializeField] Button _mapButton;
@@ -49,9 +50,16 @@ namespace Space.UIs
         {
             SoundManager.Instance.Play("Menu");
             SelectButton(GameManager.Instance.LastShipIndex);
+            LoadShips();
             ColorControl();
         }
-
+        private void LoadShips()
+        {
+            for (int i = 0; i < _shopItemSO.Length; i++)
+            {
+                _shopItemSO[i].LoadData();
+            }
+        }
         private void UpgradeButton()
         {
             
@@ -68,6 +76,7 @@ namespace Space.UIs
                 _shopItemSO[GameManager.Instance.LastShipIndex].level++;
                 _shopItemSO[GameManager.Instance.LastShipIndex].damage += _shopItemSO[GameManager.Instance.LastShipIndex].damageMultiplier;
                 SelectButton(GameManager.Instance.LastShipIndex);
+                _shopItemSO[GameManager.Instance.LastShipIndex].SaveData();
                 ColorControl();
             }
         }
@@ -107,6 +116,7 @@ namespace Space.UIs
             _currentMoney.text = GameManager.Instance.MoneyData.ToString();
             for (int i = 0; i < _shopItemSO.Length; i++)
             {
+               
                 if (!_shopItemSO[i].ownership)
                 {
                     _shopItemImg[i].color = new Color(0, 0, 0, 1);
@@ -125,7 +135,7 @@ namespace Space.UIs
         }
         private void StartButton()
         {
-            GameManager.Instance.NextLevel(1);
+            _loader.LoadScene(GameManager.Instance.LastLevel);
             _eventData?.OnPlay.Invoke();
         }
 
@@ -140,7 +150,7 @@ namespace Space.UIs
         }
         private void MapButton()
         {
-            GameManager.Instance.NextLevel(2);
+            _loader.LoadScene(2);
         }
 
         private void ExitButton()

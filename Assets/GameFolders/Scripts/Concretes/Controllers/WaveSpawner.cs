@@ -127,8 +127,7 @@ public class WaveSpawner : MonoBehaviour
         else
         {
             nextWave++;
-            WaveInformation();
-           
+            WaveInformation(); 
         }
     }
     bool EnemyIsAlive()
@@ -226,11 +225,13 @@ public class WaveSpawner : MonoBehaviour
     private void OnWin()
     {
         waveCountdown = timeBetweenWaves;
+        nextWave = 0;
 
     }
     private void OnLose()
     {
         waveCountdown = timeBetweenWaves;
+        nextWave = 0;
 
     }
     private void OnIdle()
